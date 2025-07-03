@@ -52,7 +52,7 @@ export default function AboutPage() {
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400">2024</div>
+                  <div className="text-3xl font-bold text-yellow-400">2025</div>
                   <div className="text-gray-400">Launch Year</div>
                 </div>
                 <div className="text-center">
@@ -163,7 +163,7 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-6 text-lg text-gray-300">
               <p>
-                In the summer of 2024, as LeBron James continued to defy age and expectations on the basketball court, a
+                In the summer of 2025, as LeBron James continued to defy age and expectations on the basketball court, a
                 group of crypto enthusiasts and basketball fans came together with a vision.
               </p>
               <p>

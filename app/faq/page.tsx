@@ -109,7 +109,7 @@ export default function FAQPage() {
                   )}
                 </button>
                 {openItems.includes(index) && (
-                  <div className="px-6 pb-6">
+                  <div className="px-6 py-4 pb-6">
                     <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
                   </div>
                 )}

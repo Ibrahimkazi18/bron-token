@@ -1,8 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Crown, Zap, Wallet } from "lucide-react"
-import Image from "next/image"
+import { Crown, Zap, Wallet, DollarSign, Trophy } from "lucide-react"
+import Token3D from "./Token3D"
 
 export default function HeroSection() {
   return (
@@ -14,10 +14,16 @@ export default function HeroSection() {
 
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 animate-float">
+        <DollarSign className="h-12 w-12 text-yellow-400 opacity-30" />
+      </div>
+      <div className="absolute top-20 right-10 animate-float">
         <Crown className="h-12 w-12 text-yellow-400 opacity-30" />
       </div>
       <div className="absolute bottom-20 right-10 animate-float" style={{ animationDelay: "2s" }}>
         <Zap className="h-16 w-16 text-purple-400 opacity-30" />
+      </div>
+      <div className="absolute bottom-20 left-10 animate-float" style={{ animationDelay: "2s" }}>
+        <Trophy className="h-16 w-16 text-purple-400 opacity-30" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -82,14 +88,8 @@ export default function HeroSection() {
           {/* Hero Image */}
           <div className="relative">
             <div className="relative w-full h-96 lg:h-[500px]">
-              <Image
-                src="/placeholder.svg?height=500&width=400"
-                alt="LeBron James Meme Style"
-                fill
-                className="object-contain animate-float"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-yellow-400/20 to-transparent rounded-full blur-3xl"></div>
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-yellow-400/20 to-transparent rounded-full blur-3xl"></div> */}
+              <Token3D  className='h-[500px] bg-transparent w-xl animate-float ml-10 pt-10 pb-10' />
             </div>
           </div>
         </div>

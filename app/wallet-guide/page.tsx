@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Download, Key, DollarSign, Plus, ExternalLink, Shield, AlertTriangle } from "lucide-react"
+import { toast } from "sonner"
 
 export default function WalletGuidePage() {
   useEffect(() => {
@@ -185,9 +186,14 @@ export default function WalletGuidePage() {
                 BronTokenSolanaContractAddress123456789
               </div>
               <p className="text-gray-400 mb-6">Copy this address to add BronToken to your wallet</p>
-              <Button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold hover:from-yellow-500 hover:to-yellow-600">
-                Copy Address
-              </Button>
+                <Button
+                  onClick={() => {
+                    navigator.clipboard.writeText("BronTokenSolanaContractAddress123456789")
+                    toast.success("Copied to clipboard")
+                  }}
+                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold hover:from-yellow-500 hover:to-yellow-600">
+                  Copy Address
+                </Button>
             </CardContent>
           </Card>
         </div>
