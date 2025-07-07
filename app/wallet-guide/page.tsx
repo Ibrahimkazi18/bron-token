@@ -6,8 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Download, Key, DollarSign, Plus, ExternalLink, Shield, AlertTriangle } from "lucide-react"
 import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 export default function WalletGuidePage() {
+  const router = useRouter();
+
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -210,11 +213,18 @@ export default function WalletGuidePage() {
                   Join Telegram
                 </Button>
                 <Button
+                  asChild
                   variant="outline"
                   className="border-purple-400 text-purple-400 hover:bg-purple-400/10 bg-transparent"
                 >
+                  <a
+                  href="https://discord.gg/qMWMXDa4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >
                   <ExternalLink className="mr-2 h-4 w-4" />
                   Visit Discord
+                  </a>
                 </Button>
               </div>
             </CardContent>

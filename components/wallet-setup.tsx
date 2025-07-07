@@ -1,5 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Download, Key, DollarSign, Plus } from "lucide-react"
+import { Button } from "./ui/button"
+import { toast } from "sonner"
 
 export default function WalletSetup() {
   const steps = [
@@ -63,14 +65,24 @@ export default function WalletSetup() {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <Card className="glass-effect border-yellow-400/20 max-w-2xl mx-auto">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-yellow-400 mb-4">BronToken Contract Address</h3>
-              <div className="bg-black/50 rounded-lg p-4 font-mono text-sm text-gray-300 break-all">
+        <div className="mt-16 scroll-reveal">
+          <Card className="glass-effect border-yellow-400/20">
+            <CardHeader>
+              <CardTitle className="text-center text-yellow-400">BronToken Contract Address</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="bg-black/50 rounded-lg p-6 font-mono text-lg text-gray-300 break-all mb-4">
                 BronTokenSolanaContractAddress123456789
               </div>
-              <p className="text-gray-400 mt-4 text-sm">Copy this address to add BronToken to your wallet</p>
+              <p className="text-gray-400 mb-6">Copy this address to add BronToken to your wallet</p>
+                <Button
+                  onClick={() => {
+                    navigator.clipboard.writeText("BronTokenSolanaContractAddress123456789")
+                    toast.success("Copied to clipboard")
+                  }}
+                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold hover:from-yellow-500 hover:to-yellow-600">
+                  Copy Address
+                </Button>
             </CardContent>
           </Card>
         </div>

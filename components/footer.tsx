@@ -1,5 +1,7 @@
 import Link from "next/link"
-import { Twitter, MessageCircle, Users, Crown } from "lucide-react"
+import { Crown, X } from "lucide-react"
+import { FaDiscord, FaTelegram, FaRedditAlien, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -20,13 +22,19 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
-                <Twitter className="h-6 w-6" />
+                <FaXTwitter className="h-6 w-6" />
+              </a>
+              <a href="https://discord.gg/qMWMXDa4" className="text-gray-400 hover:text-yellow-400 transition-colors">
+                <FaDiscord className="h-6 w-6" />
               </a>
               <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
-                <MessageCircle className="h-6 w-6" />
+                <FaRedditAlien className="h-6 w-6" />
               </a>
               <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
-                <Users className="h-6 w-6" />
+                <FaInstagram className="h-6 w-6" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
+                <FaTelegram className="h-6 w-6" />
               </a>
             </div>
           </div>
@@ -73,10 +81,10 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">© {new Date().getFullYear()} BronToken. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="#" className="text-gray-400 hover:text-yellow-400 text-sm transition-colors">
+            <Link href="/privacy-policy" className="text-gray-400 hover:text-yellow-400 text-sm transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-yellow-400 text-sm transition-colors">
+            <Link href="/terms-of-service" className="text-gray-400 hover:text-yellow-400 text-sm transition-colors">
               Terms of Service
             </Link>
           </div>

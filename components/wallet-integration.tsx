@@ -1,8 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Wallet, ExternalLink } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function WalletIntegration() {
+  const router = useRouter();
+
   return (
     <section className="py-20 scroll-reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,8 +53,16 @@ export default function WalletIntegration() {
               <div className="bg-black/30 rounded-lg p-6 text-center">
                 <Wallet className="h-16 w-16 text-purple-400 mx-auto mb-4" />
                 <p className="text-gray-300 mb-4">Connect your wallet to get started</p>
-                <Button className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700">
-                  Connect Phantom Wallet
+                <Button 
+                  className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700"
+                  onClick={() => {
+                    window.open(
+                      "https://jup.ag/swap/SOL-CvL4j9eqJxfY1uzMJdfivjrEPfzB1PcW81thWN6iH7E7", 
+                      "_blank"
+                    )
+                  }}
+                >
+                  Buy BronToken on Phantom
                 </Button>
               </div>
 
