@@ -1,10 +1,36 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Wallet, ExternalLink } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function WalletIntegration() {
-  const router = useRouter();
+  const [walletConnected, setWalletConnected] = useState(false)
+  const [publicKey, setPublicKey] = useState<string | null>(null)
+  const [phantomAvailable, setPhantomAvailable] = useState(false)
+
+  useEffect(() => {
+    if ("solana" in window && (window as any).solana?.isPhantom) {
+      setPhantomAvailable(true)
+
+      ;(window as any).solana.connect({ onlyIfTrusted: true }).then(({ publicKey }: any) => {
+        setWalletConnected(true)
+        setPublicKey(publicKey.toString())
+      }).catch(() => {})
+    }
+  }, []);
+
+  const connectWallet = async () => {
+    try {
+      const resp = await (window as any).solana.connect()
+      setWalletConnected(true)
+      setPublicKey(resp.publicKey.toString())
+    } catch (err) {
+      console.error("Wallet connection failed:", err)
+    }
+  }
+
 
   return (
     <section className="py-20 scroll-reveal">
@@ -52,18 +78,24 @@ export default function WalletIntegration() {
             <CardContent className="space-y-6">
               <div className="bg-black/30 rounded-lg p-6 text-center">
                 <Wallet className="h-16 w-16 text-purple-400 mx-auto mb-4" />
-                <p className="text-gray-300 mb-4">Connect your wallet to get started</p>
-                <Button 
-                  className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700"
-                  onClick={() => {
-                    window.open(
-                      "https://jup.ag/swap/SOL-CvL4j9eqJxfY1uzMJdfivjrEPfzB1PcW81thWN6iH7E7", 
-                      "_blank"
-                    )
-                  }}
-                >
-                  Buy BronToken on Phantom
-                </Button>
+                  {!phantomAvailable ? (
+                    <p className="text-gray-300">Phantom not detected. Please install Phantom to continue.</p>
+                  ) : walletConnected ? (
+                    <>
+                      <p className="text-green-400 font-semibold mb-2">Wallet Connected</p>
+                      <p className="text-sm text-gray-400 break-words">{publicKey}</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-gray-300 mb-4">Connect your wallet to get started</p>
+                      <Button
+                        className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700"
+                        onClick={connectWallet}
+                      >
+                        Connect Phantom Wallet
+                      </Button>
+                    </>
+                  )}
               </div>
 
               <div className="text-center">
