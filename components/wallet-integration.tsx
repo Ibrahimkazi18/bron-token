@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Wallet, ExternalLink } from "lucide-react"
 import { useEffect, useState } from "react"
+import { toast } from "sonner"
 
 export default function WalletIntegration() {
   const [walletConnected, setWalletConnected] = useState(false)
@@ -25,9 +26,11 @@ export default function WalletIntegration() {
     try {
       const resp = await (window as any).solana.connect()
       setWalletConnected(true)
-      setPublicKey(resp.publicKey.toString())
+      setPublicKey(resp.publicKey.toString());
+      toast.success("Wallet Connected Succesfully");
     } catch (err) {
-      console.error("Wallet connection failed:", err)
+      console.error("Wallet connection failed:", err);
+      toast.error("Something Went Wrong");
     }
   }
 
@@ -35,9 +38,11 @@ export default function WalletIntegration() {
     try {
       await (window as any).solana.disconnect()
       setWalletConnected(false)
-      setPublicKey(null)
+      setPublicKey(null);
+      toast.success("Wallet Disconnected Succesfully");
     } catch (err) {
-      console.error("Wallet disconnection failed:", err)
+      console.error("Wallet disconnection failed:", err);
+      toast.error("Something Went Wrong");
     }
   }
 
