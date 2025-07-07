@@ -31,6 +31,16 @@ export default function WalletIntegration() {
     }
   }
 
+  const disconnectWallet = async () => {
+    try {
+      await (window as any).solana.disconnect()
+      setWalletConnected(false)
+      setPublicKey(null)
+    } catch (err) {
+      console.error("Wallet disconnection failed:", err)
+    }
+  }
+
 
   return (
     <section className="py-20 scroll-reveal">
@@ -83,7 +93,13 @@ export default function WalletIntegration() {
                   ) : walletConnected ? (
                     <>
                       <p className="text-green-400 font-semibold mb-2">Wallet Connected</p>
-                      <p className="text-sm text-gray-400 break-words">{publicKey}</p>
+                      <p className="text-sm text-gray-400 break-words mb-4">{publicKey}</p>
+                      <Button
+                        className="w-full bg-red-600 hover:bg-red-700"
+                        onClick={disconnectWallet}
+                      >
+                        Disconnect Wallet
+                      </Button>
                     </>
                   ) : (
                     <>
