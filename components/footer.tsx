@@ -21,19 +21,19 @@ export default function Footer() {
               legacy.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <a href="https://x.com/brontoken" target="_blank" className="text-gray-400 hover:text-yellow-400 transition-colors">
                 <FaXTwitter className="h-6 w-6" />
               </a>
-              <a href="https://discord.gg/qMWMXDa4" className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <a href="https://discord.gg/qMWMXDa4" target="_blank" className="text-gray-400 hover:text-yellow-400 transition-colors">
                 <FaDiscord className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <a href="https://www.reddit.com/user/brontoken/" target="_blank" className="text-gray-400 hover:text-yellow-400 transition-colors">
                 <FaRedditAlien className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <a href="https://www.instagram.com/bron_token/" target="_blank" className="text-gray-400 hover:text-yellow-400 transition-colors">
                 <FaInstagram className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <a href="https://t.me/BronToken" target="_blank" className="text-gray-400 hover:text-yellow-400 transition-colors">
                 <FaTelegram className="h-6 w-6" />
               </a>
             </div>
