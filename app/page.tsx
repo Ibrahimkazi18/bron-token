@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import HeroSection from "@/components/hero-section"
 import WhatIsBronToken from "@/components/what-is-brontoken"
 import FunFacts from "@/components/fun-facts"
@@ -26,14 +26,20 @@ export default function HomePage() {
     elements.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
-  }, [])
+  }, []);
+
+  const walletRef = useRef<HTMLDivElement>(null);
+
+  const scrollToWallet = () => {
+    walletRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   return (
     <div className="min-h-screen">
-      <HeroSection />
+      <HeroSection scrollToWallet={scrollToWallet} />
       <WhatIsBronToken />
       <FunFacts />
-      <WalletIntegration />
+      <WalletIntegration ref={walletRef}/>
       <WalletSetup />
     </div>
   )

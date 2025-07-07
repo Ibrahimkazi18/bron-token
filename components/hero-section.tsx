@@ -5,7 +5,8 @@ import { Crown, Zap, Wallet, DollarSign, Trophy } from "lucide-react"
 import Token3D from "./Token3D"
 import { useRouter } from "next/navigation"
 
-export default function HeroSection() {
+
+export default function HeroSection({ scrollToWallet }: { scrollToWallet: () => void }) {
   const router = useRouter();
 
   return (
@@ -49,6 +50,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button
                 size="lg"
+                onClick={scrollToWallet}
                 className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold hover:from-yellow-500 hover:to-yellow-600 animate-glow text-lg px-8 py-4"
               >
                 <Zap className="mr-2 h-5 w-5" />
@@ -65,6 +67,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
+                onClick={scrollToWallet}
                 className="border-yellow-400 text-yellow-400 hover:bg-yellow-400/10 text-lg px-8 py-4 bg-transparent"
               >
                 <Wallet className="mr-2 h-5 w-5" />
