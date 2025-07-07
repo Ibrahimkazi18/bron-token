@@ -23,7 +23,7 @@ export default function FunFacts() {
     },
     {
       icon: Flame,
-      title: "Still Dominating at 39",
+      title: "Still Dominating at 40",
       description: "Age is just a number when you're the King",
       color: "text-purple-400",
     },

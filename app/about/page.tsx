@@ -35,10 +35,14 @@ export default function AboutPage() {
   ]
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="">
       {/* Hero Section */}
-      <section className="scroll-reveal">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="scroll-reveal overflow-hidden relative min-h-screen"> 
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-yellow-900/20 -z-10">
+          <div className="absolute inset-0 bg-[url('/images/solana-bg.jpg')] bg-cover bg-center opacity-[0.08]"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -61,9 +65,9 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative lg:ml-32">
               <Image
-                src="/placeholder.svg?height=500&width=400"
+                src="/images/king.png"
                 alt="LeBron James Meme"
                 width={400}
                 height={500}

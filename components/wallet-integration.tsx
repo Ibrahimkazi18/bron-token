@@ -18,7 +18,7 @@ const WalletIntegration = forwardRef<HTMLDivElement>((_, ref) => {
               </span>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Get started with BronToken in seconds. Connect your on raydium wallet to buy, trade, and hold the King's token.
+              Get started with BronToken in seconds. Connect your wallet on raydium to buy, trade, and hold the King's token.
             </p>
             <div className="space-y-4">
               <StepItem step={1} color="yellow" text="Connect your Wallet with Raydium" />

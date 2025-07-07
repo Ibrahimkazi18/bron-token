@@ -19,7 +19,7 @@ function Token() {
         <meshStandardMaterial attach="material-1" map={texture} metalness={0.8} roughness={0.2} />
         <meshStandardMaterial attach="material-2" map={texture} metalness={0.8} roughness={0.2} />
       </mesh>
-      <directionalLight position={[0, 5, 0]} intensity={2.0} />
+      <directionalLight position={[0, 5, 0]} intensity={0} />
     </group>
   )
 }

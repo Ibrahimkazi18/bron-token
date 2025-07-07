@@ -13,7 +13,7 @@ export default function HeroSection({ scrollToWallet }: { scrollToWallet: () => 
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-yellow-900/20">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-[url('/images/bron-bg.jpg')] bg-cover bg-center opacity-5"></div>
       </div>
 
       {/* Floating Elements */}
