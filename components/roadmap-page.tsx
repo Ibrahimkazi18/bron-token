@@ -43,151 +43,101 @@ export default function RoadmapPage() {
 
   const roadmapItems = [
     {
-      title: "Genesis Launch",
-      date: "Q1 2024",
+      title: "Discussion",
+      date: "May 2025",
       description:
-        "Official BronToken launch on Solana blockchain with initial liquidity pools. Smart contract deployment and security audits completed.",
-      icon: Rocket,
-      status: "completed",
-      details: [
-        "Smart contract deployed",
-        "Initial liquidity: $500K",
-        "Security audit passed",
-        "Community launch event",
-      ],
-    },
-    {
-      title: "Community Foundation",
-      date: "Q1 2024",
-      description:
-        "Building the strongest crypto community with exclusive Discord channels, Twitter campaigns, and early adopter rewards program.",
+        "Initial brainstorming, project scope definition, and planning discussions involving team goals and timeline setup.",
       icon: Users,
       status: "completed",
       details: [
-        "Discord server: 10K+ members",
-        "Twitter followers: 25K+",
-        "Ambassador program launched",
-        "Community governance voting",
+        "Core idea finalized",
+        "Scope defined",
+        "Tech stack evaluation",
+        "Timeline draft created",
       ],
     },
     {
-      title: "Major DEX Listings",
-      date: "Q2 2024",
+      title: "Development",
+      date: "June 2025",
       description:
-        "Strategic listings on top-tier decentralized exchanges including Raydium, Orca, and Jupiter for maximum accessibility.",
-      icon: TrendingUp,
+        "Start of development phase with setup of repositories, coding standards, and foundational modules.",
+      icon: Zap,
       status: "completed",
       details: [
-        "Raydium listing completed",
-        "Orca integration live",
-        "Jupiter aggregator support",
-        "24/7 trading availability",
+        "GitHub repo initialized",
+        "Frontend & backend structure setup",
+        "CI/CD pipelines established",
+        "First feature sprint",
       ],
     },
     {
-      title: "LeBron NFT Collection",
-      date: "Q3 2024",
+      title: "Website",
+      date: "June 2025",
       description:
-        "Exclusive 10,000 piece NFT collection featuring legendary LeBron moments, with special utilities and staking rewards.",
-      icon: Crown,
-      status: "in-progress",
-      details: [
-        "Artwork creation: 80% complete",
-        "Utility design finalized",
-        "Staking mechanism ready",
-        "Whitelist: 5K holders",
-      ],
-    },
-    {
-      title: "Mobile App Launch",
-      date: "Q3 2024",
-      description:
-        "Native iOS and Android app for portfolio tracking, staking, and exclusive community features with push notifications.",
-      icon: Smartphone,
-      status: "in-progress",
-      details: ["iOS development: 70%", "Android development: 65%", "Beta testing phase", "App store submission prep"],
-    },
-    {
-      title: "Gaming Integration",
-      date: "Q4 2024",
-      description:
-        "Integration with popular blockchain games, allowing BRON tokens to be used for in-game purchases and rewards.",
-      icon: Gamepad2,
-      status: "upcoming",
-      details: ["Partnership negotiations", "Game integration SDK", "Play-to-earn mechanics", "Tournament prize pools"],
-    },
-    {
-      title: "Staking & DeFi Hub",
-      date: "Q4 2024",
-      description:
-        "Launch comprehensive DeFi platform with staking pools, yield farming, and liquidity mining with up to 150% APY.",
-      icon: Zap,
-      status: "upcoming",
-      details: [
-        "Staking pools: 3 tiers",
-        "Yield farming protocols",
-        "Liquidity mining rewards",
-        "Auto-compound features",
-      ],
-    },
-    {
-      title: "Global Partnerships",
-      date: "Q1 2025",
-      description:
-        "Strategic partnerships with major sports brands, celebrity endorsements, and integration with traditional finance platforms.",
+        `Created the project's website with essential information, roadmap, and onboarding features.`,
       icon: Globe,
-      status: "upcoming",
+      status: "completed",
       details: [
-        "Sports brand collaborations",
-        "Celebrity partnerships",
-        "Traditional finance bridges",
-        "Global marketing campaign",
+        "Landing page",
+        "Responsive UI complete",
+        "Basic user info and roadmap",
+        "Will host on Vercel",
       ],
     },
     {
-      title: "Metaverse Expansion",
-      date: "Q1 2025",
+      title: "Game Integration for Airdrop",
+      date: "July 2025",
       description:
-        "Virtual real estate in major metaverse platforms, exclusive BronToken holder events, and virtual merchandise store.",
-      icon: Building,
-      status: "upcoming",
+        "Seamless integration of a game created by us with the website for airdrop and user engagement mechanics.",
+      icon: Gamepad2,
+      status: "completed",
       details: [
-        "Virtual land acquisition",
-        "Metaverse events space",
-        "Digital merchandise",
-        "VR experience development",
+        "Game created",
+        "Smart contract airdrop module",
+        "In-game rewards mechanics",
+        "Testing & integration",
       ],
     },
     {
-      title: "Layer 2 Integration",
-      date: "Q2 2025",
+      title: "Community Platforms",
+      date: "July 2025",
       description:
-        "Multi-chain expansion to Ethereum Layer 2 solutions, Polygon, and Arbitrum for reduced fees and faster transactions.",
-      icon: Shield,
-      status: "upcoming",
-      details: ["Polygon bridge deployment", "Arbitrum integration", "Cross-chain swaps", "Unified wallet experience"],
+        "Expansion across social platforms including Discord, Twitter, Reddit, Telegram, and Instagram to build community engagement.",
+      icon: Users,
+      status: "completed",
+      details: [
+        "Discord & Telegram channels launched",
+        "Reddit + Twitter community building",
+        "Instagram for visual content",
+        "Moderation & bots setup",
+      ],
     },
     {
-      title: "DAO Governance",
-      date: "Q2 2025",
+      title: "Launch and Airdrop",
+      date: "July 2025",
       description:
-        "Full decentralization with community-driven governance, proposal voting, and treasury management by token holders.",
-      icon: Target,
-      status: "upcoming",
-      details: ["Governance token distribution", "Voting mechanism", "Proposal system", "Treasury management"],
+        "Official launch of the platform with token airdrop campaign to early community members and users.",
+      icon: Rocket,
+      status: "completed",
+      details: [
+        "Launch event planned",
+        "Airdrop distribution tool ready",
+        "Marketing campaign live",
+        "On-chain distribution tracked",
+      ],
     },
     {
-      title: "Championship Rewards",
-      date: "Q3 2025",
+      title: "LeBron the GOAT - Meme Tribute",
+      date: "∞",
       description:
-        "Special reward system tied to LeBron's performance and Lakers games, with bonus distributions for championship wins.",
+        "A celebration of greatness. This meme card honors the King himself with maximum glaze and zero hesitation. This is not a feature. This is legacy.",
       icon: Trophy,
-      status: "upcoming",
+      status: "meme",
       details: [
-        "Performance-based rewards",
-        "Game prediction pools",
-        "Championship bonuses",
-        "Fan engagement features",
+        "🕶️ LeBron when he dropped 50 and still passed for the game-winner",
+        "🔥 2016 Finals Game 7 block played in 4K on loop",
+        "🧠 Big Brain Pass to JR Smith (he forgot the score, but Bron remembered greatness)",
+        "🐐 Meme vault unlocked: all hail the King",
       ],
     },
   ]
@@ -260,7 +210,9 @@ export default function RoadmapPage() {
                                   ? "bg-green-600 hover:bg-green-700 text-white text-xs"
                                   : item.status === "in-progress"
                                     ? "bg-[#fdb927] text-black hover:bg-[#fdb927]/80 text-xs"
-                                    : "border-[#552583] text-[#552583] hover:bg-[#552583] hover:text-white text-xs"
+                                    : item.status === "meme"
+                                      ? "bg-gradient-to-r from-[#fdb927] to-[#552583] text-white shadow-md text-xs animate-pulse"
+                                      : "border-[#552583] text-[#552583] hover:bg-[#552583] hover:text-white text-xs"
                               }
                             >
                               {item.status.replace("-", " ").toUpperCase()}
