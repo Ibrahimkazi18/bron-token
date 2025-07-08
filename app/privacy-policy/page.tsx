@@ -125,35 +125,33 @@ export default function PolicyPage() {
                         <p className="text-gray-300 mb-6">Join our community for step-by-step assistance and support</p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button 
-                                asChild
-                                variant="outline"
-                                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
+                          <Button 
+                            asChild
+                            className="bg-gradient-to-r hover:text-white from-blue-500 to-blue-600 hover:from-blue-600 hover:border-white hover:border hover:to-blue-700"
+                          >
+                            <a
+                            href="https://t.me/BronToken"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             >
-                                <a
-                                    href="https://discord.gg/qMWMXDa4"    // add telegram link
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <ExternalLink className="mr-2 h-4 w-4" />
-                                    Visit Telegram
-                                </a>
-                            </Button>
-                        
-                            <Button
-                                asChild
-                                variant="outline"
-                                className="border-purple-400 text-purple-400 hover:bg-purple-400/10 bg-transparent"
+                              <ExternalLink className="mr-2 h-4 w-4" />
+                              Visit Telegram
+                            </a>
+                          </Button>
+                          <Button
+                            asChild
+                            variant="outline"
+                            className="border-purple-400 text-purple-400 hover:bg-purple-400/10 bg-transparent"
+                          >
+                            <a
+                            href="https://discord.gg/qMWMXDa4"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             >
-                                <a
-                                    href="https://discord.gg/qMWMXDa4"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <ExternalLink className="mr-2 h-4 w-4" />
-                                    Visit Discord
-                                </a>
-                            </Button>
+                              <ExternalLink className="mr-2 h-4 w-4" />
+                              Visit Discord
+                            </a>
+                          </Button>
                         </div>
                     </CardContent>
                 </Card>

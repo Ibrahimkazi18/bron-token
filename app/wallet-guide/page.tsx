@@ -208,9 +208,18 @@ export default function WalletGuidePage() {
               <h3 className="text-2xl font-bold text-white mb-4">Need Help?</h3>
               <p className="text-gray-300 mb-6">Join our community for step-by-step assistance and support</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Join Telegram
+                <Button 
+                  asChild
+                  className="bg-gradient-to-r hover:text-white from-blue-500 to-blue-600 hover:from-blue-600 hover:border-white hover:border hover:to-blue-700"
+                >
+                  <a
+                  href="https://t.me/BronToken"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Visit Telegram
+                  </a>
                 </Button>
                 <Button
                   asChild
@@ -222,8 +231,8 @@ export default function WalletGuidePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   >
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Visit Discord
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Visit Discord
                   </a>
                 </Button>
               </div>

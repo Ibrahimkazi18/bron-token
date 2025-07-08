@@ -27,11 +27,11 @@ export default function AboutPage() {
   }, [])
 
   const devTeam = [
-    { name: "LeDev", role: "Lead Developer", avatar: "/placeholder.svg?height=100&width=100" },
-    { name: "BronCoder", role: "Smart Contract Dev", avatar: "/placeholder.svg?height=100&width=100" },
-    { name: "KingScript", role: "Frontend Wizard", avatar: "/placeholder.svg?height=100&width=100" },
-    { name: "GoatDesign", role: "UI/UX Designer", avatar: "/placeholder.svg?height=100&width=100" },
-    { name: "ChampMarketing", role: "Community Manager", avatar: "/placeholder.svg?height=100&width=100" },
+    { name: "LeDev", role: "Lead Developer", avatar: "/images/dev_i.png" },
+    { name: "BronCoder", role: "Smart Contract Dev", avatar: "/images/dev_h.png" },
+    { name: "KingScript", role: "Frontend Wizard", avatar: "/images/dev_k.png" },
+    { name: "GoatDesign", role: "UI/UX Designer", avatar: "/images/dev_r.png" },
+    { name: "ChampMarketing", role: "Community Manager", avatar: "/images/dev_t.png" },
   ]
 
   return (

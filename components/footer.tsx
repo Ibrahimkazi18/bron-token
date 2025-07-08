@@ -62,17 +62,11 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <div className="space-y-2">
-              <a href="#" className="block text-gray-400 hover:text-yellow-400 transition-colors">
-                Whitepaper
-              </a>
               <a href="/tokenomics" className="block text-gray-400 hover:text-yellow-400 transition-colors">
                 Tokenomics
               </a>
               <a href="/roadmap" className="block text-gray-400 hover:text-yellow-400 transition-colors">
                 Roadmap
-              </a>
-              <a href="#" className="block text-gray-400 hover:text-yellow-400 transition-colors">
-                Audit
               </a>
             </div>
           </div>
