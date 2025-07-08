@@ -1,7 +1,9 @@
 "use client";
 
 import { supabase } from "@/lib/supabaseClient";
+import { validateWalletAddress } from "@/lib/supabaseUtils";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const Airdrop = () => {
   const [walletAddress, setWalletAddress] = useState("");
@@ -14,27 +16,37 @@ const Airdrop = () => {
     setLoading(true);
 
     try {
-      
+        const validation = await validateWalletAddress(walletAddress, 60);
+
+        if(!validation.success) {
+          toast.error(`${validation.message}\nTokens Gained: ${validation.token_amount}`);
+          return;
+        }
+
+        toast.success(validation.message);
+
         const res = await fetch("/api/airdrop", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ walletAddress }),
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ walletAddress, tokens: validation.tokens }),
         });
 
         const text = await res.text();
         let data;
+
         try {
-        data = JSON.parse(text);
+          data = JSON.parse(text);
         } catch (err) {
-        console.error("Server returned invalid JSON:", text);
-        throw new Error("Server did not return valid JSON");
+          console.error("Server returned invalid JSON:", text);
+          throw new Error("Server did not return valid JSON");
         }
 
         if (res.ok) {
-        alert("✅ Airdrop sent!");
+          toast.success("✅ Airdrop sent!");
         } else {
-        alert("❌ Airdrop failed: " + (data?.message || "Unknown error"));
+          toast.error("❌ Airdrop failed: " + (data?.message || "Unknown error"));
         }
+
     } catch (err: any) {
         alert("❌ Error: " + err.message);
         console.error(err);

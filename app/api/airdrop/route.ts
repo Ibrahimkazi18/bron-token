@@ -7,7 +7,7 @@ import path from "path";
 export async function POST(req: Request) {
   try {
     console.log("🚨 Airdrop API hit!");
-    const { walletAddress } = await req.json();
+    const { walletAddress, tokens } = await req.json();
 
     if (!walletAddress) {
       return NextResponse.json({ message: "Wallet address is required" }, { status: 400 });
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       senderTokenAccount.address,
       recipientTokenAccount.address,
       keypair,
-      1000000000 // = 1 token if 6 decimals
+      1000000000 * tokens // = 1 token if 6 decimals
     );
 
     console.log("✅ Airdrop successful:", sig);
