@@ -65,10 +65,10 @@ export default function Footer() {
               <a href="#" className="block text-gray-400 hover:text-yellow-400 transition-colors">
                 Whitepaper
               </a>
-              <a href="#" className="block text-gray-400 hover:text-yellow-400 transition-colors">
+              <a href="/tokenomics" className="block text-gray-400 hover:text-yellow-400 transition-colors">
                 Tokenomics
               </a>
-              <a href="#" className="block text-gray-400 hover:text-yellow-400 transition-colors">
+              <a href="/roadmap" className="block text-gray-400 hover:text-yellow-400 transition-colors">
                 Roadmap
               </a>
               <a href="#" className="block text-gray-400 hover:text-yellow-400 transition-colors">
