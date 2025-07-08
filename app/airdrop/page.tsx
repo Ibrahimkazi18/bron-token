@@ -1,5 +1,6 @@
 "use client";
 
+import { supabase } from "@/lib/supabaseClient";
 import { useState } from "react";
 
 const Airdrop = () => {
@@ -11,7 +12,9 @@ const Airdrop = () => {
     if (!walletAddress) return alert("Please enter a wallet address");
 
     setLoading(true);
+
     try {
+      
         const res = await fetch("/api/airdrop", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

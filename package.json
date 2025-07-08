@@ -41,6 +41,7 @@
     "@react-three/fiber": "^9.1.4",
     "@solana/spl-token": "^0.4.13",
     "@solana/web3.js": "^1.98.2",
+    "@supabase/supabase-js": "^2.50.3",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
