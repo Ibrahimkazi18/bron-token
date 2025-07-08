@@ -1,69 +1,52 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Wallet, ExternalLink } from "lucide-react"
+"use client"
 
-export default function WalletIntegration() {
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Wallet } from "lucide-react"
+import { forwardRef } from "react"
+
+const WalletIntegration = forwardRef<HTMLDivElement>((_, ref) => {
+
   return (
-    <section className="py-20 scroll-reveal">
+    <section id="wallet" ref={ref} className="py-20 scroll-reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Section */}
           <div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-yellow-400 to-purple-500 bg-clip-text text-transparent">
-                Connect Your Phantom Wallet
+                Connect Your Wallet
               </span>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Get started with BronToken in seconds. Connect your Phantom wallet to buy, trade, and hold the King's
-              token.
+              Get started with BronToken in seconds. Connect your wallet on raydium to buy, trade, and hold the King's token.
             </p>
             <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-black font-bold">
-                  1
-                </div>
-                <span className="text-gray-300">Connect your Phantom wallet</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-                  2
-                </div>
-                <span className="text-gray-300">Approve the connection</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-black font-bold">
-                  3
-                </div>
-                <span className="text-gray-300">Start trading BronToken</span>
-              </div>
+              <StepItem step={1} color="yellow" text="Connect your Wallet with Raydium" />
+              <StepItem step={2} color="purple" text="Approve the connection" />
+              <StepItem step={3} color="yellow" text="Start trading BronToken" />
             </div>
           </div>
 
+          {/* Right Section */}
           <Card className="glass-effect border-yellow-400/20">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2 text-yellow-400">
                 <Wallet className="h-6 w-6" />
-                <span>Phantom Wallet</span>
+                <span>Raydium DEX</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="bg-black/30 rounded-lg p-6 text-center">
-                <Wallet className="h-16 w-16 text-purple-400 mx-auto mb-4" />
-                <p className="text-gray-300 mb-4">Connect your wallet to get started</p>
-                <Button className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700">
-                  Connect Phantom Wallet
-                </Button>
-              </div>
+                <>
+                  <iframe
+                    src="https://raydium.io/swap/?inputCurrency=sol&outputCurrency=CvL4j9eqJxfY1uzMJdfivjrEPfzB1PcW81thWN6iH7E7"
+                    width="100%"
+                    height="600"
+                    style={{ border: "none", borderRadius: "16px" }}
+                    allow="clipboard-write"
+                  />
 
-              <div className="text-center">
-                <p className="text-sm text-gray-400 mb-2">Don't have Phantom wallet?</p>
-                <Button
-                  variant="outline"
-                  className="border-yellow-400 text-yellow-400 hover:bg-yellow-400/10 bg-transparent"
-                >
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Download Phantom
-                </Button>
+                </>
               </div>
             </CardContent>
           </Card>
@@ -71,4 +54,19 @@ export default function WalletIntegration() {
       </div>
     </section>
   )
+})
+
+function StepItem({ step, text, color }: { step: number; text: string; color: "yellow" | "purple" }) {
+  const colorClass = color === "yellow" ? "bg-yellow-400 text-black" : "bg-purple-500 text-white"
+  return (
+    <div className="flex items-center space-x-3">
+      <div className={`w-8 h-8 ${colorClass} rounded-full flex items-center justify-center font-bold`}>
+        {step}
+      </div>
+      <span className="text-gray-300">{text}</span>
+    </div>
+  )
 }
+
+
+export default WalletIntegration;

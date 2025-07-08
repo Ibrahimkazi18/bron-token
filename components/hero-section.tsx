@@ -3,13 +3,17 @@
 import { Button } from "@/components/ui/button"
 import { Crown, Zap, Wallet, DollarSign, Trophy } from "lucide-react"
 import Token3D from "./Token3D"
+import { useRouter } from "next/navigation"
 
-export default function HeroSection() {
+
+export default function HeroSection({ scrollToWallet }: { scrollToWallet: () => void }) {
+  const router = useRouter();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-yellow-900/20">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-[url('/images/bron-bg.jpg')] bg-cover bg-center opacity-5"></div>
       </div>
 
       {/* Floating Elements */}
@@ -46,6 +50,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button
                 size="lg"
+                onClick={scrollToWallet}
                 className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold hover:from-yellow-500 hover:to-yellow-600 animate-glow text-lg px-8 py-4"
               >
                 <Zap className="mr-2 h-5 w-5" />
@@ -55,12 +60,14 @@ export default function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="border-purple-500 text-purple-400 hover:bg-purple-500/10 text-lg px-8 py-4 bg-transparent"
+                onClick={() => router.push("/airdrop")}
               >
                 Get Airdrop
               </Button>
               <Button
                 size="lg"
                 variant="outline"
+                onClick={scrollToWallet}
                 className="border-yellow-400 text-yellow-400 hover:bg-yellow-400/10 text-lg px-8 py-4 bg-transparent"
               >
                 <Wallet className="mr-2 h-5 w-5" />
@@ -71,12 +78,12 @@ export default function HeroSection() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">23M</div>
-                <div className="text-gray-400">Market Cap</div>
+                <div className="text-3xl font-bold text-yellow-400">1B</div>
+                <div className="text-gray-400">Total Supply</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400">15K+</div>
-                <div className="text-gray-400">Holders</div>
+                <div className="text-3xl font-bold text-purple-400">50M</div>
+                <div className="text-gray-400">Airdrop Pool</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-yellow-400">100%</div>

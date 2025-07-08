@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { ChevronDown, ChevronUp, ExternalLink } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export default function FAQPage() {
   const [openItems, setOpenItems] = useState<number[]>([])
@@ -125,18 +126,33 @@ export default function FAQPage() {
               <h3 className="text-2xl font-bold text-white mb-4">Still have questions?</h3>
               <p className="text-gray-300 mb-6">Join our community channels for real-time support and discussions</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="#"
-                  className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all"
+                <Button
+                  asChild
+                  className="bg-gradient-to-r hover:text-white from-blue-500 to-blue-600 hover:from-blue-600 hover:border-white hover:border hover:to-blue-700"
                 >
-                  Join Telegram
-                </a>
-                <a
-                  href="#"
-                  className="px-6 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg hover:from-purple-600 hover:to-purple-700 transition-all"
+                  <a
+                  href="https://t.me/BronToken"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Visit Telegram
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-purple-400 text-purple-400 hover:bg-purple-400/10 bg-transparent"
                 >
-                  Join Discord
-                </a>
+                  <a
+                  href="https://discord.gg/qMWMXDa4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Visit Discord
+                  </a>
+                </Button>
               </div>
             </CardContent>
           </Card>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X, Crown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,7 +16,9 @@ export default function Navbar() {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, []);
+
+  const router = useRouter();
 
   return (
     <nav
@@ -45,7 +48,13 @@ export default function Navbar() {
             <Link href="/wallet-guide" className="text-gray-300 hover:text-yellow-400 transition-colors">
               Wallet Guide
             </Link>
-            <Button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold hover:from-yellow-500 hover:to-yellow-600 animate-glow">
+            <Link href="/airdrop" className="text-gray-300 hover:text-yellow-400 transition-colors">
+              Airdrop
+            </Link>
+            <Button 
+              onClick={() => router.push("/#wallet")}
+              className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold hover:from-yellow-500 hover:to-yellow-600 animate-glow"
+            >
               Buy Now
             </Button>
           </div>
