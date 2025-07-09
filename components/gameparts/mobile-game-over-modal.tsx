@@ -258,7 +258,7 @@ export default function MobileGameOverModal({
 
                 <div className="text-xs text-gray-500 mt-2 space-y-1">
                   <p>• 1 Token = 1 Point scored</p>
-                  <p>• Maximum 100 tokens per game</p>
+                  <p>• Maximum 100 tokens per wallet</p>
                   {beatLeBron && <p>• 🏆 Champion bonus applied!</p>}
                 </div>
               </div>

@@ -24,7 +24,7 @@ interface GameCanvasProps {
 export default function GameCanvas({ setToken, setOpenAirdropModal }: GameCanvasProps) {
   const bronScore = 30
   const [timeLeft, setTimeLeft] = useState(60)
-  const [score, setScore] = useState(20)
+  const [score, setScore] = useState(0)
   const [gameActive, setGameActive] = useState(true)
   const [ballKey, setBallKey] = useState(0)
   const [showGameOverModal, setShowGameOverModal] = useState(false);
@@ -327,7 +327,7 @@ export default function GameCanvas({ setToken, setOpenAirdropModal }: GameCanvas
                                   fill="none"
                                   stroke={timeLeft <= 10 ? "#ef4444" : "#fdb927"}
                                   strokeWidth="2"
-                                  strokeDasharray={`${(timeLeft / 30) * 100}, 100`}
+                                  strokeDasharray={`${(timeLeft / 60) * 100}, 100`}
                                   className="transition-all duration-1000"
                                 />
                               </svg>
