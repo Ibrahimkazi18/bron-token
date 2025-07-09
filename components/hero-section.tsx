@@ -30,6 +30,10 @@ export default function HeroSection({ scrollToWallet }: { scrollToWallet: () => 
         <Trophy className="h-16 w-16 text-purple-400 opacity-30" />
       </div>
 
+      <div className="sr-only">
+        <h2>Bron Token, Lebron James Meme Token is here</h2>
+      </div>
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -93,10 +97,14 @@ export default function HeroSection({ scrollToWallet }: { scrollToWallet: () => 
           </div>
 
           {/* Hero Image */}
+          <div className="sr-only">
+            <h2>Visual representation of Bron Token - basketball-inspired Web3 coin</h2>
+          </div>
+
           <div className="relative">
-            <div className="relative w-full h-96 lg:h-[500px]">
+            <div className="relative w-full h-72 sm:h-80 md:h-96 lg:h-[500px]">
               {/* <div className="absolute inset-0 bg-gradient-to-t from-yellow-400/20 to-transparent rounded-full blur-3xl"></div> */}
-              <Token3D  className='h-[500px] bg-transparent w-xl animate-float ml-10 pt-10 pb-10' />
+              <Token3D className="w-full h-48 sm:h-64 md:h-80 lg:h-[500px] bg-transparent animate-float mx-auto pt-4 sm:pt-6 md:pt-10 pb-4 sm:pb-6 md:pb-10" />
             </div>
           </div>
         </div>

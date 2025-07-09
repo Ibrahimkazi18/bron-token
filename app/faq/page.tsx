@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronDown, ChevronUp, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Head from "next/head"
 
 export default function FAQPage() {
   const [openItems, setOpenItems] = useState<number[]>([])
@@ -76,88 +77,116 @@ export default function FAQPage() {
   ]
 
   return (
-    <div className="min-h-screen py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16 scroll-reveal">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-yellow-400 to-purple-500 bg-clip-text text-transparent">
-              Frequently Asked Questions
-            </span>
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Got questions about BronToken? We've got answers. Find everything you need to know about the King's token.
-          </p>
-        </div>
+    <>
+      <Head>
+        <title>Bron Token FAQ | All About the LeBron-Inspired Crypto Coin</title>
+        <meta
+          name="description"
+          content="Find answers to all your questions about Bron Token, the LeBron James inspired Solana meme coin. Learn how to buy, join airdrops, and get involved."
+        />
+        <meta
+          name="keywords"
+          content="bron token faq, brontoken help, lebron token solana, buy bron token, bron crypto wallet, meme coin solana, basketball meme coin, crypto airdrop"
+        />
+        <meta name="robots" content="index, follow" />
 
-        {/* FAQ Items */}
-        <div className="space-y-4 scroll-reveal">
-          {faqs.map((faq, index) => (
-            <Card
-              key={index}
-              className="glass-effect border-gray-700/50 hover:border-yellow-400/40 transition-all duration-300"
-            >
-              <CardContent className="p-0">
-                <button
-                  onClick={() => toggleItem(index)}
-                  className="w-full p-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
-                >
-                  <h3 className="text-lg font-semibold text-white pr-4">{faq.question}</h3>
-                  {openItems.includes(index) ? (
-                    <ChevronUp className="h-5 w-5 text-yellow-400 flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5 text-yellow-400 flex-shrink-0" />
+        {/* Open Graph */}
+        <meta property="og:title" content="Bron Token FAQ | All About the LeBron-Inspired Crypto Coin" />
+        <meta property="og:description" content="BronToken FAQ covers how to buy, airdrop details, wallet setup, and more for the ultimate LeBron-themed crypto experience." />
+        <meta property="og:image" content="https://brontoken.com/images/BronTokenLogo.png" />
+        <meta property="og:url" content="https://brontoken.com/faq" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Bron Token FAQ | All About the LeBron-Inspired Crypto Coin" />
+        <meta name="twitter:description" content="Everything you need to know about BronToken: buying, safety, wallets, and community support." />
+        <meta name="twitter:image" content="https://brontoken.com/images/BronTokenLogo.png" />
+      </Head>
+      
+      <div className="min-h-screen py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center mb-16 scroll-reveal">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-yellow-400 to-purple-500 bg-clip-text text-transparent">
+                Frequently Asked Questions
+              </span>
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Got questions about BronToken? We've got answers. Find everything you need to know about the King's token.
+            </p>
+          </div>
+
+          {/* FAQ Items */}
+          <div className="space-y-4 scroll-reveal">
+            {faqs.map((faq, index) => (
+              <Card
+                key={index}
+                className="glass-effect border-gray-700/50 hover:border-yellow-400/40 transition-all duration-300"
+              >
+                <CardContent className="p-0">
+                  <button
+                    onClick={() => toggleItem(index)}
+                    className="w-full p-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                  >
+                    <h3 className="text-lg font-semibold text-white pr-4">{faq.question}</h3>
+                    {openItems.includes(index) ? (
+                      <ChevronUp className="h-5 w-5 text-yellow-400 flex-shrink-0" />
+                    ) : (
+                      <ChevronDown className="h-5 w-5 text-yellow-400 flex-shrink-0" />
+                    )}
+                  </button>
+                  {openItems.includes(index) && (
+                    <div className="px-6 py-4 pb-6">
+                      <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                    </div>
                   )}
-                </button>
-                {openItems.includes(index) && (
-                  <div className="px-6 py-4 pb-6">
-                    <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
-                  </div>
-                )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Contact Section */}
+          <div className="mt-16 text-center scroll-reveal">
+            <Card className="glass-effect border-purple-400/20">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-white mb-4">Still have questions?</h3>
+                <p className="text-gray-300 mb-6">Join our community channels for real-time support and discussions</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    asChild
+                    className="bg-gradient-to-r hover:text-white from-blue-500 to-blue-600 hover:from-blue-600 hover:border-white hover:border hover:to-blue-700"
+                  >
+                    <a
+                    href="https://t.me/BronToken"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Visit Telegram
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="border-purple-400 text-purple-400 hover:bg-purple-400/10 bg-transparent"
+                  >
+                    <a
+                    href="https://discord.gg/qMWMXDa4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Visit Discord
+                    </a>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
-
-        {/* Contact Section */}
-        <div className="mt-16 text-center scroll-reveal">
-          <Card className="glass-effect border-purple-400/20">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-white mb-4">Still have questions?</h3>
-              <p className="text-gray-300 mb-6">Join our community channels for real-time support and discussions</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  asChild
-                  className="bg-gradient-to-r hover:text-white from-blue-500 to-blue-600 hover:from-blue-600 hover:border-white hover:border hover:to-blue-700"
-                >
-                  <a
-                  href="https://t.me/BronToken"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Visit Telegram
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="border-purple-400 text-purple-400 hover:bg-purple-400/10 bg-transparent"
-                >
-                  <a
-                  href="https://discord.gg/qMWMXDa4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Visit Discord
-                  </a>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
