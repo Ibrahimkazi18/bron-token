@@ -86,6 +86,9 @@ export default function Navbar() {
               <Link href="/wallet-guide" className="text-gray-300 hover:text-yellow-400 transition-colors">
                 Wallet Guide
               </Link>
+              <Link href="/airdrop" className="text-gray-300 hover:text-yellow-400 transition-colors">
+                Airdrop
+              </Link>
               <Button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold hover:from-yellow-500 hover:to-yellow-600">
                 Buy Now
               </Button>
