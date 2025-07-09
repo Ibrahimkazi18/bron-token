@@ -1,0 +1,345 @@
+"use client"
+
+import { Canvas } from "@react-three/fiber"
+import { Environment } from "@react-three/drei"
+import Basketball from "./Basketball"
+import CoinPoster from "./CoinPoster"
+import Chairs from "./Chairs"
+import Stands from "./Stands"
+import Hoop from "./Hoop"
+import Court from "./Court"
+import { Physics } from "@react-three/rapier"
+import { useEffect, useState } from "react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Crown, Trophy, Timer, Target, RotateCcw, Zap, Star, Award } from "lucide-react"
+import GameOverModal from "./game-over-modal"
+
+interface GameCanvasProps {
+  setToken: (token: number) => void
+  setOpenAirdropModal: (bool: boolean) => void
+}
+
+export default function GameCanvas({ setToken, setOpenAirdropModal }: GameCanvasProps) {
+  const bronScore = 30
+  const [timeLeft, setTimeLeft] = useState(30)
+  const [score, setScore] = useState(0)
+  const [gameActive, setGameActive] = useState(true)
+  const [ballKey, setBallKey] = useState(0)
+  const [showGameOverModal, setShowGameOverModal] = useState(false)
+
+  useEffect(() => {
+    if (!gameActive) return
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval)
+          setGameActive(false)
+          setBallKey((prev) => prev + 1)
+
+          // Show game over modal after 1.5 seconds
+          setTimeout(() => {
+            setShowGameOverModal(true)
+          }, 1500)
+
+          return 30
+        }
+        return prev - 1
+      })
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [gameActive])
+
+  const triggerBallReset = () => setBallKey((prev) => prev + 1)
+
+  const handleScore = () => {
+    const newScore = score + 3
+    const cappedScore = Math.min(newScore, 100)
+    setScore(cappedScore)
+    setToken(cappedScore)
+    triggerBallReset()
+  }
+
+  const handleRestart = () => {
+    setScore(0)
+    setToken(0)
+    setTimeLeft(30)
+    setGameActive(true)
+    setShowGameOverModal(false)
+    triggerBallReset()
+  }
+
+  const handleClaimAirdrop = () => {
+    setShowGameOverModal(false)
+    setOpenAirdropModal(true)
+  }
+
+  const getScoreStatus = () => {
+    if (score > bronScore) return { text: "WINNING!", color: "text-green-400", icon: Trophy }
+    if (score === bronScore) return { text: "TIED!", color: "text-yellow-400", icon: Award }
+    return { text: "BEHIND", color: "text-red-400", icon: Target }
+  }
+
+  const scoreStatus = getScoreStatus()
+  const StatusIcon = scoreStatus.icon
+
+  return (
+    <>
+      <div className="w-full h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#16213e] text-white flex">
+        {/* Left Sidebar - Fixed width and full height */}
+        <div className="w-80 flex-shrink-0 bg-gradient-to-b from-black/50 to-black/80 backdrop-blur-sm border-r border-gray-700/50 relative overflow-hidden">
+          {/* Background Effects */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-[#fdb927] rounded-full blur-2xl animate-pulse"></div>
+            <div
+              className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-[#552583] rounded-full blur-2xl animate-pulse"
+              style={{ animationDelay: "1s" }}
+            ></div>
+          </div>
+
+          {/* Scrollable Content */}
+          <div className="h-full overflow-y-auto p-4 space-y-4">
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="text-center mb-6">
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <h1 className="text-xl font-bold bg-gradient-to-r from-[#fdb927] via-[#552583] to-[#00d4ff] bg-clip-text text-transparent">
+                    Basketball Challenge
+                  </h1>
+                </div>
+              </div>
+
+              {/* Score Cards */}
+              <div className="space-y-3 mb-4">
+                {/* Player Score */}
+                <Card className="glass-effect border-gray-700 hover:border-[#fdb927] transition-all duration-300">
+                  <CardContent className="p-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 rounded-full bg-gradient-to-r from-[#00d4ff] to-[#552583]">
+                          <Target className="w-4 h-4 text-white" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-400">Your Score</p>
+                          <p className="text-xl font-bold text-white">{score}</p>
+                        </div>
+                      </div>
+                      <Badge className="bg-[#00d4ff]/20 text-[#00d4ff] border-[#00d4ff]/30 text-xs">YOU</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* LeBron Score */}
+                <Card className="glass-effect border-gray-700 hover:border-[#fdb927] transition-all duration-300">
+                  <CardContent className="p-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 rounded-full bg-gradient-to-r from-[#fdb927] to-[#552583]">
+                          <Crown className="w-4 h-4 text-white" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-400">LeBron's Score</p>
+                          <p className="text-xl font-bold text-white">{bronScore}</p>
+                        </div>
+                      </div>
+                      <Badge className="bg-[#fdb927]/20 text-[#fdb927] border-[#fdb927]/30 text-xs">KING</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Status Card */}
+                <Card
+                  className={`glass-effect border-gray-700 transition-all duration-300 ${
+                    score > bronScore
+                      ? "border-green-500/50"
+                      : score === bronScore
+                        ? "border-yellow-500/50"
+                        : "border-red-500/50"
+                  }`}
+                >
+                  <CardContent className="p-3">
+                    <div className="flex items-center justify-center gap-2">
+                      <StatusIcon className={`w-4 h-4 ${scoreStatus.color}`} />
+                      <span className={`font-bold text-sm ${scoreStatus.color}`}>{scoreStatus.text}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Timer */}
+                <Card className="glass-effect border-gray-700 hover:border-red-500 transition-all duration-300">
+                  <CardContent className="p-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 rounded-full bg-gradient-to-r from-red-500 to-orange-500">
+                          <Timer className="w-4 h-4 text-white" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-400">Time Left</p>
+                          <p
+                            className={`text-xl font-bold ${timeLeft <= 10 ? "text-red-400 animate-pulse" : "text-white"}`}
+                          >
+                            {timeLeft}s
+                          </p>
+                        </div>
+                      </div>
+                      <div className="w-10 h-10 relative">
+                        <svg className="w-10 h-10 transform -rotate-90" viewBox="0 0 36 36">
+                          <path
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none"
+                            stroke="rgba(255,255,255,0.1)"
+                            strokeWidth="2"
+                          />
+                          <path
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none"
+                            stroke={timeLeft <= 10 ? "#ef4444" : "#fdb927"}
+                            strokeWidth="2"
+                            strokeDasharray={`${(timeLeft / 30) * 100}, 100`}
+                            className="transition-all duration-1000"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="space-y-3 mb-4">
+                {gameActive ? (
+                  <Button
+                    onClick={triggerBallReset}
+                    className="w-full bg-gradient-to-r from-[#552583] to-[#fdb927] hover:from-[#552583]/80 hover:to-[#fdb927]/80 text-white font-bold py-2.5 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Reset Ball
+                  </Button>
+                ) : (
+                  <div className="space-y-3">
+                    <Card className="glass-effect border-red-500/50 bg-red-500/10">
+                      <CardContent className="p-3 text-center">
+                        <Trophy className="w-6 h-6 text-red-400 mx-auto mb-2" />
+                        <p className="text-lg font-bold text-red-400">Game Over!</p>
+                        <p className="text-xs text-gray-400 mt-1">
+                          {score > bronScore
+                            ? "You beat the King! 👑"
+                            : score === bronScore
+                              ? "It's a tie! 🤝"
+                              : "LeBron wins this round! 🏀"}
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    <Button
+                      onClick={handleRestart}
+                      className="w-full bg-gradient-to-r from-[#fdb927] to-[#00d4ff] hover:from-[#fdb927]/80 hover:to-[#00d4ff]/80 text-black font-bold py-2.5 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
+                    >
+                      <Zap className="w-4 h-4 mr-2" />
+                      Restart Game
+                    </Button>
+                  </div>
+                )}
+              </div>
+
+              {/* Instructions */}
+              <Card className="glass-effect border-gray-700">
+                <CardContent className="p-3">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Star className="w-4 h-4 text-[#fdb927]" />
+                    <h3 className="font-semibold text-white text-sm">How to Play</h3>
+                  </div>
+                  <ul className="space-y-2 text-xs text-gray-400">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1 h-1 rounded-full bg-[#fdb927] mt-1.5 flex-shrink-0"></div>
+                      <span>Drag and release the ball to shoot</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1 h-1 rounded-full bg-[#552583] mt-1.5 flex-shrink-0"></div>
+                      <span>Score 3 points per successful shot</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1 h-1 rounded-full bg-[#00d4ff] mt-1.5 flex-shrink-0"></div>
+                      <span>
+                        Earn 1 Token for every 1 Point scored. Score 30+ to receive the maximum of 100 Tokens!
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1 h-1 rounded-full bg-green-400 mt-1.5 flex-shrink-0"></div>
+                      <span>Use mouse on desktop or touch on mobile</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1 h-1 rounded-full bg-purple-400 mt-1.5 flex-shrink-0"></div>
+                      <span>Reset ball if it gets stuck</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+        {/* Game Canvas - Takes remaining space */}
+        <div className="flex-1 h-full relative">
+          <Canvas shadows camera={{ position: [0.1, 3.5, 11], rotation: [-0.2, 0, 0], fov: 95 }}>
+            {/* Lights */}
+            <ambientLight intensity={0} />
+            <spotLight
+              position={[0, 1, 4]}
+              angle={Math.PI}
+              penumbra={1}
+              intensity={100}
+              castShadow
+              shadow-mapSize-width={1024}
+              shadow-mapSize-height={1024}
+            />
+            <spotLight
+              position={[0, 2, -7]}
+              angle={Math.PI / 1}
+              penumbra={0.5}
+              intensity={50}
+              castShadow
+              shadow-mapSize-width={1024}
+              shadow-mapSize-height={1024}
+            />
+            <pointLight position={[0, 2, 6.5]} intensity={20} color="white" />
+            <pointLight position={[0, 6, -7]} intensity={20} color="white" />
+            <pointLight position={[0, 13, -8]} rotation={[0, Math.PI, 0]} intensity={10} color="white" />
+
+            {/* Background */}
+            <Environment preset="night" />
+
+            {/* Main game rendering with Physics */}
+            <Physics gravity={[0, -9.81, 0]} timeStep="vary">
+              <Basketball key={ballKey} gameActive={gameActive} />
+              <Hoop onScore={handleScore} gameActive={gameActive} />
+              <Chairs />
+              <Court />
+              <Stands />
+              <CoinPoster />
+            </Physics>
+          </Canvas>
+        </div>
+
+        <style jsx>{`
+          .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+          }
+        `}</style>
+      </div>
+
+      {/* Game Over Modal */}
+      <GameOverModal
+        isOpen={showGameOverModal}
+        onClose={() => setShowGameOverModal(false)}
+        score={score}
+        bronScore={bronScore}
+        tokens={score} // 1 token per point
+        onClaimAirdrop={handleClaimAirdrop}
+      />
+    </>
+  )
+}
