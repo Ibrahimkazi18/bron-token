@@ -32,6 +32,7 @@ export default function WalletGuidePage() {
   const steps = [
     {
       icon: Download,
+      image: "/images/phantomwallet.png",
       title: "Download Phantom Wallet",
       description: "Visit phantom.app and download the browser extension or mobile app",
       details: [
@@ -42,6 +43,7 @@ export default function WalletGuidePage() {
     },
     {
       icon: Key,
+      image: "/images/createwallet.jpg",
       title: "Create Your Wallet",
       description: "Set up a new wallet and secure your seed phrase",
       details: [
@@ -53,6 +55,7 @@ export default function WalletGuidePage() {
     },
     {
       icon: DollarSign,
+      image: "/images/fundwithsol.jpg",
       title: "Fund with SOL",
       description: "Add Solana (SOL) to your wallet for transactions",
       details: [
@@ -64,6 +67,7 @@ export default function WalletGuidePage() {
     },
     {
       icon: Plus,
+      image: "/images/buybron.jpg",
       title: "Add BronToken",
       description: "Import BronToken using our contract address",
       details: [
@@ -153,10 +157,10 @@ export default function WalletGuidePage() {
                       </div>
                       <div className="relative">
                         <Image
-                          src="/placeholder.svg?height=300&width=400"
+                          src={step.image}
                           alt={`Step ${index + 1} illustration`}
-                          width={400}
-                          height={300}
+                          width={500}
+                          height={400}
                           className="rounded-lg"
                         />
                       </div>
