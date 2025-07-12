@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
     console.log("🚀 Airdrop started for:", walletAddress);
 
-    const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+    const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
 
     const mint = new PublicKey(process.env.NEXT_PUBLIC_BRON_KEY!);
     const recipient = new PublicKey(walletAddress);
