@@ -8,7 +8,7 @@ export default function TokenomicsPage() {
   const tokenomicsData = [
     {
       label: "Total Supply",
-      value: "1 Billion",
+      value: "500 Million",
       subtitle: "BRON",
       icon: Coins,
       position: "top",
@@ -16,18 +16,9 @@ export default function TokenomicsPage() {
       color: "from-yellow-400 to-orange-500",
     },
     {
-      label: "Community Reserve",
-      value: "35%",
-      subtitle: "350M BRON",
-      icon: Crown,
-      position: "top-right",
-      description: "Reserved for community rewards and airdrops",
-      color: "from-purple-400 to-pink-500",
-    },
-    {
       label: "Liquidity Pool",
-      value: "25%",
-      subtitle: "250M BRON",
+      value: "90%",
+      subtitle: "450M BRON",
       icon: TrendingUp,
       position: "right",
       description: "DEX liquidity and trading pairs",
@@ -44,21 +35,12 @@ export default function TokenomicsPage() {
     },
     {
       label: "Airdrop Pool",
-      value: "10%",
+      value: "5%",
       subtitle: "100M BRON",
       icon: Users,
       position: "bottom",
       description: "Early adopters and community airdrops",
       color: "from-indigo-400 to-purple-500",
-    },
-    {
-      label: "Burn Mechanism",
-      value: "5%",
-      subtitle: "50M BRON",
-      icon: Flame,
-      position: "left",
-      description: "Quarterly burns to reduce supply",
-      color: "from-red-400 to-orange-500",
     },
   ]
 
@@ -190,7 +172,7 @@ export default function TokenomicsPage() {
                 {/* Tokenomics Cards in Perfect Circle */}
                 {tokenomicsData.map((item, index) => {
                   const Icon = item.icon
-                  const angle = index * 60 * (Math.PI / 180) // 60 degrees apart
+                  const angle = index * 90 * (Math.PI / 180) // 60 degrees apart
                   const radius = 380 // Distance from center
                   const x = Math.cos(angle) * radius
                   const y = Math.sin(angle) * radius
@@ -252,7 +234,7 @@ export default function TokenomicsPage() {
                   </defs>
 
                   {tokenomicsData.map((_, index) => {
-                    const angle = index * 60 * (Math.PI / 180) // 60 degrees apart
+                    const angle = index * 90 * (Math.PI / 180) // 60 degrees apart
                     const radius = 380                        // Distance from center
                     const x = Math.cos(angle) * radius
                     const y = Math.sin(angle) * radius

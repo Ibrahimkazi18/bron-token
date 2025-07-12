@@ -39,7 +39,7 @@ const WalletIntegration = forwardRef<HTMLDivElement>((_, ref) => {
               <div className="bg-black/30 rounded-lg p-6 text-center">
                 <>
                   <iframe
-                    src="https://raydium.io/swap/?inputCurrency=sol&outputCurrency=CvL4j9eqJxfY1uzMJdfivjrEPfzB1PcW81thWN6iH7E7"
+                    src="https://raydium.io/swap/?inputMint=sol&outputMint=mntKoQfF6gxwpi6xgDrzdoTuDQ51zD3EcyDTD3ucVXH"
                     width="100%"
                     height="600"
                     style={{ border: "none", borderRadius: "16px" }}

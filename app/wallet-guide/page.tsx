@@ -221,12 +221,12 @@ export default function WalletGuidePage() {
               </CardHeader>
               <CardContent className="text-center">
                 <div className="bg-black/50 rounded-lg p-6 font-mono text-lg text-gray-300 break-all mb-4">
-                  BronTokenSolanaContractAddress123456789
+                  mntKoQfF6gxwpi6xgDrzdoTuDQ51zD3EcyDTD3ucVXH
                 </div>
                 <p className="text-gray-400 mb-6">Copy this address to add BronToken to your wallet</p>
                   <Button
                     onClick={() => {
-                      navigator.clipboard.writeText("BronTokenSolanaContractAddress123456789")
+                      navigator.clipboard.writeText("mntKoQfF6gxwpi6xgDrzdoTuDQ51zD3EcyDTD3ucVXH")
                       toast.success("Copied to clipboard")
                     }}
                     className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold hover:from-yellow-500 hover:to-yellow-600">

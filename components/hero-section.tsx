@@ -82,11 +82,11 @@ export default function HeroSection({ scrollToWallet }: { scrollToWallet: () => 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">1B</div>
+                <div className="text-3xl font-bold text-yellow-400">500M</div>
                 <div className="text-gray-400">Total Supply</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400">50M</div>
+                <div className="text-3xl font-bold text-purple-400">25M</div>
                 <div className="text-gray-400">Airdrop Pool</div>
               </div>
               <div className="text-center">
