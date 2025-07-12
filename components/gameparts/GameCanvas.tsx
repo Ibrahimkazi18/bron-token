@@ -198,7 +198,7 @@ export default function GameCanvas({ setToken, setOpenAirdropModal }: GameCanvas
                   {/* Game Stats Preview */}
                   <div className="mt-6 grid grid-cols-3 gap-2 text-center">
                     <div className="p-2 rounded-lg bg-black/20 border border-gray-700">
-                      <div className="text-lg font-bold text-[#fdb927]">30s</div>
+                      <div className="text-lg font-bold text-[#fdb927]">60s</div>
                       <div className="text-xs text-gray-400">Time Limit</div>
                     </div>
                     <div className="p-2 rounded-lg bg-black/20 border border-gray-700">

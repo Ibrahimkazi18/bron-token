@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { validateWalletAddress } from "@/lib/supabaseUtils";
 import { useProgress } from "@react-three/drei";
-import { Crown, Gift, Plane, Zap } from "lucide-react";
+import { ChevronLeft, Crown, Gift, Plane, Zap } from "lucide-react";
 import { Suspense, useState } from "react";
 import { toast } from "sonner";
 
@@ -130,6 +130,18 @@ const Airdrop = () => {
                           className="absolute -top-2 -right-2 w-6 h-6 text-[#fdb927] animate-bounce"
                           style={{ animationDuration: "2s" }}
                         />
+                        
+                        <div 
+                          className="cursor-pointer absolute -top-2 -left-2 flex animate-bounce items-center" 
+                          style={{ animationDuration: "2s" }}
+                          onClick={() => setOpenAirdropModal(false)}
+                        >
+                          <ChevronLeft
+                            className="w-6 h-6 text-[#00d4ff]"
+                          />
+
+                          <span className="hover:underline text-sm text-[#00d4ff]">Return</span>
+                        </div>
                       </div>
 
                       <h2 className="text-3xl font-bold bg-gradient-to-r from-[#fdb927] via-[#552583] to-[#00d4ff] bg-clip-text text-transparent mb-3">

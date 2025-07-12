@@ -17,11 +17,10 @@ export async function POST(req: Request) {
 
     const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 
-    const mint = new PublicKey(process.env.NEXT_PUBLIC_BRON_KEY!); // ⬅️ Replace this
+    const mint = new PublicKey(process.env.NEXT_PUBLIC_BRON_KEY!); 
     const recipient = new PublicKey(walletAddress);
 
-    const secretPath = path.join(process.cwd(), "keypair.json");
-    const secret = JSON.parse(fs.readFileSync(secretPath, "utf8"));
+    const secret = JSON.parse(process.env.NEXT_PUBLIC_KEYPAIR_JSON!);
     const keypair = Keypair.fromSecretKey(Uint8Array.from(secret));
     const sender = keypair.publicKey;
 
