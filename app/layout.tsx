@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BronToken - The King of Memes on Solana",
     description: "The ultimate LeBron James-inspired meme coin on Solana",
-    images: ["/placeholder.svg?height=630&width=1200"],
+    images: ["/images/BronTokenLogo.png"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "BronToken - The King of Memes on Solana",
     description: "The ultimate LeBron James-inspired meme coin on Solana",
-    images: ["/placeholder.svg?height=630&width=1200"],
+    images: ["/images/BronTokenLogo.png"],
   },
     generator: 'v0.dev'
 }
