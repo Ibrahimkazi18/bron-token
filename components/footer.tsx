@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Crown, X } from "lucide-react"
-import { FaDiscord, FaTelegram, FaRedditAlien, FaInstagram } from "react-icons/fa";
+import { FaDiscord, FaTelegram, FaRedditAlien, FaInstagram, FaChartLine } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
@@ -35,6 +35,9 @@ export default function Footer() {
               </a>
               <a href="https://t.me/BronToken" target="_blank" className="text-gray-400 hover:text-yellow-400 transition-colors">
                 <FaTelegram className="h-6 w-6" />
+              </a>
+              <a href="https://dexscreener.com/solana/7cunfsjbt37qsmxknnf97qqdr6ncstncip8wmfqhkjis" target="_blank" className="text-gray-400 hover:text-yellow-400 transition-colors">
+                <FaChartLine className="h-6 w-6" />
               </a>
             </div>
           </div>
