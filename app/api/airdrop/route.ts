@@ -23,17 +23,20 @@
       }
 
       console.log("🚀 Airdrop started for:", walletAddress);
-
+      
+      console.log("test log added")
       const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
-
+      console.log("connection made")
+      
       const mint = new PublicKey(process.env.NEXT_PUBLIC_BRON_KEY!);
+      console.log("Mint:", mint.toBase58());
       const recipient = new PublicKey(walletAddress);
 
       const secret = JSON.parse(process.env.NEXT_PUBLIC_KEYPAIR_JSON!);
       const keypair = Keypair.fromSecretKey(Uint8Array.from(secret));
+      console.log("keypair", keypair);
       const sender = keypair.publicKey;
 
-      console.log("Mint:", mint.toBase58());
       console.log("Sender:", sender.toBase58());
 
       const senderTokenAccount = await getOrCreateAssociatedTokenAccount(
