@@ -89,7 +89,8 @@ export default function HomePage() {
                     best coin,
                     meme crypto token,
                     crypto meme token,
-                    lebron crypto meme token
+                    lebron crypto meme token,
+                    crypto meme,
                   "
         />
         <meta name="robots" content="index, follow" />
