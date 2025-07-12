@@ -27,7 +27,7 @@ export default function TokenomicsPage() {
     {
       label: "Developer Fund",
       value: "5%",
-      subtitle: "50M BRON",
+      subtitle: "25M BRON",
       icon: Lock,
       position: "bottom-right",
       description: "Team allocation with 2-year vesting",
@@ -36,7 +36,7 @@ export default function TokenomicsPage() {
     {
       label: "Airdrop Pool",
       value: "5%",
-      subtitle: "100M BRON",
+      subtitle: "25M BRON",
       icon: Users,
       position: "bottom",
       description: "Early adopters and community airdrops",
