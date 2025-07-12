@@ -75,7 +75,19 @@ export default function HomePage() {
                     solana basketball token, 
                     lebron james solana token, 
                     spl bron token, 
-                    bron token solana spl
+                    bron token solana spl,
+                    meme coin,
+                    meme token,
+                    meme,
+                    king,
+                    king coin,
+                    king token,
+                    best meme coin,
+                    best meme token,
+                    best token,
+                    best coin,
+                    meme crypto token,
+                    crypto meme token,
                   "
         />
         <meta name="robots" content="index, follow" />
