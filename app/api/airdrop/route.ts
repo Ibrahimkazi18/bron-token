@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
-import { Connection, PublicKey, Keypair, clusterApiUrl } from "@solana/web3.js";
-import { getOrCreateAssociatedTokenAccount, transfer } from "@solana/spl-token";
-import fs from "fs";
-import path from "path";
+import {
+  Connection,
+  PublicKey,
+  Keypair,
+  clusterApiUrl,
+} from "@solana/web3.js";
+import {
+  getOrCreateAssociatedTokenAccount,
+  transferChecked,
+} from "@solana/spl-token"; 
 
 export async function POST(req: Request) {
   try {
@@ -10,14 +16,17 @@ export async function POST(req: Request) {
     const { walletAddress, tokens } = await req.json();
 
     if (!walletAddress) {
-      return NextResponse.json({ message: "Wallet address is required" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Wallet address is required" },
+        { status: 400 }
+      );
     }
 
     console.log("🚀 Airdrop started for:", walletAddress);
 
     const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 
-    const mint = new PublicKey(process.env.NEXT_PUBLIC_BRON_KEY!); 
+    const mint = new PublicKey(process.env.NEXT_PUBLIC_BRON_KEY!);
     const recipient = new PublicKey(walletAddress);
 
     const secret = JSON.parse(process.env.NEXT_PUBLIC_KEYPAIR_JSON!);
@@ -38,13 +47,18 @@ export async function POST(req: Request) {
       recipient
     );
 
-    const sig = await transfer(
+    // Transfer with checked decimals (assume 9 for devnet SPL tokens)
+    const decimals = 9;
+
+    const sig = await transferChecked(
       connection,
       keypair,
       senderTokenAccount.address,
+      mint,
       recipientTokenAccount.address,
       keypair,
-      1000000000 * tokens // = 1 token if 6 decimals
+      Number(tokens) * 10 ** decimals,
+      decimals
     );
 
     console.log("✅ Airdrop successful:", sig);

@@ -55,7 +55,7 @@ const Airdrop = () => {
       }
 
       if (res.ok) {
-        toast.success("✅ Airdrop sent!");
+        toast.success(`✅ Airdropped ${validation.tokens} BRONs`);
       } else {
         toast.error("❌ Airdrop failed: " + (data?.message || "Unknown error"));
       }
