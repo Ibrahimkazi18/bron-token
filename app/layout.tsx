@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description:
     "BronToken is the ultimate LeBron James-inspired meme coin on Solana. Join the revolution and become part of the GOAT legacy.",
   keywords: "BronToken, Solana, meme coin, LeBron James, cryptocurrency, Lakers",
+  icons: {
+    icon: "/images/BronTokenLogo.png", 
+  },
   openGraph: {
     title: "BronToken - The King of Memes on Solana",
     description: "The ultimate LeBron James-inspired meme coin on Solana",

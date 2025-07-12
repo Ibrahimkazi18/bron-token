@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://brontoken.com/sitemap.xml

@@ -39,6 +39,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       <Head>
         <title>Bron Token | LeBron James Inspired Web3 Coin</title>
+        <link rel="icon" href="/images/BronTokenLogo.png" />
         <meta
           name="description"
           content="Bron Token is a basketball-themed Web3, Solana crypto coin inspired by LeBron James. Earn BRON by playing, holding, and joining the movement of fans and players."
