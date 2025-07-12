@@ -46,23 +46,23 @@ export async function POST(req: Request) {
     console.log("Connection established");
 
     // Validate environment variables
-    if (!process.env.BRON_KEY) {
-      console.error("BRON_KEY is not set");
-      throw new Error("BRON_KEY is not set");
+    if (!process.env.NEXT_PUBLIC_BRON_KEY) {
+      console.error("NEXT_PUBLIC_BRON_KEY is not set");
+      throw new Error("NEXT_PUBLIC_BRON_KEY is not set");
     }
-    if (!process.env.KEYPAIR_JSON) {
-      console.error("KEYPAIR_JSON is not set");
-      throw new Error("KEYPAIR_JSON is not set");
+    if (!process.env.NEXT_PUBLIC_KEYPAIR_JSON) {
+      console.error("NEXT_PUBLIC_KEYPAIR_JSON is not set");
+      throw new Error("NEXT_PUBLIC_KEYPAIR_JSON is not set");
     }
 
     // Validate mint
     mint;
     try {
-      mint = new PublicKey(process.env.BRON_KEY);
+      mint = new PublicKey(process.env.NEXT_PUBLIC_BRON_KEY);
       console.log("Mint:", mint.toBase58());
     } catch (e) {
-      console.error("Invalid mint address:", process.env.BRON_KEY);
-      throw new Error("Invalid mint address");
+      console.error("Invalid mint address:", process.env.NEXT_PUBLIC_BRON_KEY);
+      throw new Error("Invalid mint address error");
     }
 
     // Verify mint is a Token-2022 token
@@ -79,11 +79,11 @@ export async function POST(req: Request) {
     // Load keypair
     let keypair;
     try {
-      const secret = JSON.parse(process.env.KEYPAIR_JSON);
+      const secret = JSON.parse(process.env.NEXT_PUBLIC_KEYPAIR_JSON);
       keypair = Keypair.fromSecretKey(Uint8Array.from(secret));
     } catch (e) {
-      console.error("Invalid KEYPAIR_JSON format");
-      throw new Error("Invalid KEYPAIR_JSON format");
+      console.error("Invalid NEXT_PUBLIC_KEYPAIR_JSON format");
+      throw new Error("Invalid NEXT_PUBLIC_KEYPAIR_JSON format");
     }
     sender = keypair.publicKey;
     console.log("Sender:", sender.toBase58());
