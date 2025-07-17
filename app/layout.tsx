@@ -5,6 +5,7 @@ import "./globals.css"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { Toaster } from "sonner"
+import Head from "next/head"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -38,6 +39,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "BronToken",
+              url: "https://brontoken.com",
+              logo: "https://brontoken.com/images/BronTokenLogo.png",
+              sameAs: [
+                "https://twitter.com/bron_token",
+                "https://instagram.com/bron_token"
+              ]
+            }),
+          }}
+        />
+      </Head>
+
       <body className={`${inter.className} bg-gray-900 text-white min-h-screen`}>
         <Navbar />
         <Toaster />
