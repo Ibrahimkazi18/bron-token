@@ -934,7 +934,7 @@ export default function CreateLiquidityPool({
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto py-6 sm:py-8 space-y-8 px-4 sm:px-6">
+    <div className="w-full max-w-4xl mx-auto space-y-8">
       <ToastContainer
         position="top-center"
         autoClose={5000}
