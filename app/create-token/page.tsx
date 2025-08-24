@@ -121,7 +121,8 @@ export default function TokenManagementPage() {
     if (file) {
       if (file.size > 1048576) {
         toast.error("Image size must be 1MB or smaller.", {
-          className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-red-300",
         });
         if (fileInputRef.current) fileInputRef.current.value = "";
@@ -133,7 +134,8 @@ export default function TokenManagementPage() {
 
       if (file.type !== "image/png") {
         toast.error("Only PNG files are allowed.", {
-          className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-red-300",
         });
         if (fileInputRef.current) fileInputRef.current.value = "";
@@ -162,7 +164,8 @@ export default function TokenManagementPage() {
 
     if (!res.ok) {
       toast.error("Failed to upload image to IPFS.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return null;
@@ -170,7 +173,8 @@ export default function TokenManagementPage() {
 
     const data = await res.json();
     toast.success("Image uploaded successfully to IPFS!", {
-      className: "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+      className:
+        "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
       progressClassName: "bg-green-300",
     });
     return data.ipfs_hash as string;
@@ -190,7 +194,8 @@ export default function TokenManagementPage() {
 
     if (!res.ok) {
       toast.error("Failed to upload metadata to IPFS.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return null;
@@ -198,7 +203,8 @@ export default function TokenManagementPage() {
 
     const data = await res.json();
     toast.success("Metadata uploaded successfully to IPFS!", {
-      className: "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+      className:
+        "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
       progressClassName: "bg-green-300",
     });
     return data.ipfs_hash as string;
@@ -209,7 +215,8 @@ export default function TokenManagementPage() {
 
     if (!wallet?.adapter || !publicKey) {
       toast.error("Please connect your wallet.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
@@ -252,14 +259,17 @@ export default function TokenManagementPage() {
       toast.info(
         ({ closeToast }) => (
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="break-all">Mint Address: {mintAddress.toBase58()}</span>
+            <span className="break-all">
+              Mint Address: {mintAddress.toBase58()}
+            </span>
             <Button
               variant="outline"
               size="sm"
               onClick={() => {
                 navigator.clipboard.writeText(mintAddress.toBase58());
                 toast.success("Mint address copied to clipboard!", {
-                  className: "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+                  className:
+                    "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
                   progressClassName: "bg-green-300",
                 });
               }}
@@ -269,7 +279,8 @@ export default function TokenManagementPage() {
           </div>
         ),
         {
-          className: "bg-blue-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-blue-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-blue-300",
         }
       );
@@ -296,7 +307,8 @@ export default function TokenManagementPage() {
           </div>
         ),
         {
-          className: "bg-blue-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-blue-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-blue-300",
         }
       );
@@ -312,7 +324,8 @@ export default function TokenManagementPage() {
                 onClick={() => {
                   navigator.clipboard.writeText(mintAddress.toBase58());
                   toast.success("Mint address copied to clipboard!", {
-                    className: "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+                    className:
+                      "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
                     progressClassName: "bg-green-300",
                   });
                 }}
@@ -337,7 +350,8 @@ export default function TokenManagementPage() {
           </div>
         ),
         {
-          className: "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-green-300",
         }
       );
@@ -360,7 +374,8 @@ export default function TokenManagementPage() {
       toast.error(
         error.message || "Failed to create token. Please try again.",
         {
-          className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-red-300",
         }
       );
@@ -370,14 +385,16 @@ export default function TokenManagementPage() {
   const handleRevokeMint = async () => {
     if (!mintAddressMint) {
       toast.error("Please enter a valid mint address.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
     }
     if (!wallet?.adapter || !publicKey) {
       toast.error("Please connect your wallet.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
@@ -388,7 +405,8 @@ export default function TokenManagementPage() {
       mintPublicKey = new PublicKey(mintAddressMint);
     } catch (error) {
       toast.error("Invalid mint address provided.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
@@ -420,7 +438,8 @@ export default function TokenManagementPage() {
           </div>
         ),
         {
-          className: "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-green-300",
         }
       );
@@ -430,7 +449,8 @@ export default function TokenManagementPage() {
         error.message ||
           "Failed to revoke mint authority. Please ensure you have the authority and the mint address is valid.",
         {
-          className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-red-300",
         }
       );
@@ -442,14 +462,16 @@ export default function TokenManagementPage() {
   const handleRevokeFreeze = async () => {
     if (!mintAddressFreeze) {
       toast.error("Please enter a valid mint address.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
     }
     if (!wallet?.adapter || !publicKey) {
       toast.error("Please connect your wallet.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
@@ -460,7 +482,8 @@ export default function TokenManagementPage() {
       mintPublicKey = new PublicKey(mintAddressFreeze);
     } catch (error) {
       toast.error("Invalid mint address provided.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
@@ -492,7 +515,8 @@ export default function TokenManagementPage() {
           </div>
         ),
         {
-          className: "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-green-300",
         }
       );
@@ -502,7 +526,8 @@ export default function TokenManagementPage() {
         error.message ||
           "Failed to revoke freeze authority. Please ensure you have the authority and the mint address is valid.",
         {
-          className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-red-300",
         }
       );
@@ -514,14 +539,16 @@ export default function TokenManagementPage() {
   const handleRevokeUpdate = async () => {
     if (!mintAddressUpdate) {
       toast.error("Please enter a valid mint address.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
     }
     if (!wallet?.adapter || !publicKey) {
       toast.error("Please connect your wallet.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
@@ -532,7 +559,8 @@ export default function TokenManagementPage() {
       mintPublicKey = new PublicKey(mintAddressUpdate);
     } catch (error) {
       toast.error("Invalid mint address provided.", {
-        className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+        className:
+          "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
         progressClassName: "bg-red-300",
       });
       return;
@@ -564,7 +592,8 @@ export default function TokenManagementPage() {
           </div>
         ),
         {
-          className: "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-green-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-green-300",
         }
       );
@@ -574,7 +603,8 @@ export default function TokenManagementPage() {
         error.message ||
           "Failed to revoke update authority. Please ensure you have the authority and the mint address is valid.",
         {
-          className: "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+          className:
+            "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
           progressClassName: "bg-red-300",
         }
       );
@@ -590,7 +620,10 @@ export default function TokenManagementPage() {
   );
 
   return (
-    <div className="bg-black/30 w-full min-h-screen overflow-x-hidden" style={{ boxSizing: "border-box" }}>
+    <div
+      className="bg-black/30 w-full min-h-screen overflow-x-hidden"
+      style={{ boxSizing: "border-box" }}
+    >
       <style jsx global>{`
         * {
           box-sizing: border-box;
@@ -689,7 +722,9 @@ export default function TokenManagementPage() {
             <section>
               <Card className="bg-black/50 border-none rounded-xl">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-xl sm:text-2xl">Token Creator</CardTitle>
+                  <CardTitle className="text-xl sm:text-2xl">
+                    Token Creator
+                  </CardTitle>
                   <CardDescription className="text-sm sm:text-base">
                     Fill in the details to create your new token.
                   </CardDescription>
@@ -697,7 +732,10 @@ export default function TokenManagementPage() {
                 <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="token-name" className="text-sm sm:text-base">
+                      <Label
+                        htmlFor="token-name"
+                        className="text-sm sm:text-base"
+                      >
                         Token Name (Max 32 Characters)
                       </Label>
                       <Input
@@ -717,7 +755,10 @@ export default function TokenManagementPage() {
                       )}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="token-symbol" className="text-sm sm:text-base">
+                      <Label
+                        htmlFor="token-symbol"
+                        className="text-sm sm:text-base"
+                      >
                         Token Symbol (Max 8 Characters)
                       </Label>
                       <Input
@@ -737,7 +778,10 @@ export default function TokenManagementPage() {
                       )}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="decimals" className="text-sm sm:text-base">
+                      <Label
+                        htmlFor="decimals"
+                        className="text-sm sm:text-base"
+                      >
                         Decimals (Range 1-9)
                       </Label>
                       <Input
@@ -762,7 +806,10 @@ export default function TokenManagementPage() {
                       )}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="total-supply" className="text-sm sm:text-base">
+                      <Label
+                        htmlFor="total-supply"
+                        className="text-sm sm:text-base"
+                      >
                         Total Supply
                       </Label>
                       <Input
@@ -787,7 +834,10 @@ export default function TokenManagementPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="description" className="text-sm sm:text-base">
+                    <Label
+                      htmlFor="description"
+                      className="text-sm sm:text-base"
+                    >
                       Description
                     </Label>
                     <Textarea
@@ -810,7 +860,10 @@ export default function TokenManagementPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="file-upload" className="text-sm sm:text-base">
+                    <Label
+                      htmlFor="file-upload"
+                      className="text-sm sm:text-base"
+                    >
                       Token Logo (PNG)
                     </Label>
                     <div className="relative flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-lg cursor-pointer bg-muted hover:bg-muted/80 transition-colors border-gray-100/70">
@@ -853,7 +906,10 @@ export default function TokenManagementPage() {
 
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border-green-400/70 border rounded-lg bg-card">
                     <div className="space-y-1">
-                      <Label htmlFor="revoke-freeze" className="text-sm sm:text-base">
+                      <Label
+                        htmlFor="revoke-freeze"
+                        className="text-sm sm:text-base"
+                      >
                         Revoke Freeze Authority
                       </Label>
                       <p className="text-xs sm:text-sm text-muted-foreground">
@@ -876,7 +932,10 @@ export default function TokenManagementPage() {
 
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg border-blue-400/80 bg-card">
                     <div className="space-y-1">
-                      <Label htmlFor="revoke-mint" className="text-sm sm:text-base">
+                      <Label
+                        htmlFor="revoke-mint"
+                        className="text-sm sm:text-base"
+                      >
                         Revoke Mint Authority
                       </Label>
                       <p className="text-xs sm:text-sm text-muted-foreground">
@@ -898,7 +957,10 @@ export default function TokenManagementPage() {
 
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg bg-card border-purple-400/80">
                     <div className="space-y-1">
-                      <Label htmlFor="revoke-update" className="text-sm sm:text-base">
+                      <Label
+                        htmlFor="revoke-update"
+                        className="text-sm sm:text-base"
+                      >
                         Revoke Update Authority
                       </Label>
                       <p className="text-xs sm:text-sm text-muted-foreground">
@@ -943,6 +1005,13 @@ export default function TokenManagementPage() {
                   </CardTitle>
                   <CardDescription className="text-sm sm:text-base">
                     Manage mint, freeze, or update authorities for a token.
+                    <div className="bg-card text-card-foreground mt-5 p-3 text-center text-sm font-medium border border-green-400/50">
+                      Total cost:{" "}
+                      <span className="font-semibold text-green-400">
+                        0.1 SOL
+                      </span>{" "}
+                      + gas fees per transaction.
+                    </div>
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -973,7 +1042,10 @@ export default function TokenManagementPage() {
                         authority. <strong>This action is irreversible.</strong>
                       </p>
                       <div className="space-y-2">
-                        <Label htmlFor="mint-address-mint" className="text-sm sm:text-base">
+                        <Label
+                          htmlFor="mint-address-mint"
+                          className="text-sm sm:text-base"
+                        >
                           Token Mint Address
                         </Label>
                         <Input
@@ -1003,7 +1075,10 @@ export default function TokenManagementPage() {
                         authority. <strong>This action is irreversible.</strong>
                       </p>
                       <div className="space-y-2">
-                        <Label htmlFor="mint-address-freeze" className="text-sm sm:text-base">
+                        <Label
+                          htmlFor="mint-address-freeze"
+                          className="text-sm sm:text-base"
+                        >
                           Token Mint Address
                         </Label>
                         <Input
@@ -1033,7 +1108,10 @@ export default function TokenManagementPage() {
                         authority. <strong>This action is irreversible.</strong>
                       </p>
                       <div className="space-y-2">
-                        <Label htmlFor="mint-address-update" className="text-sm sm:text-base">
+                        <Label
+                          htmlFor="mint-address-update"
+                          className="text-sm sm:text-base"
+                        >
                           Token Mint Address
                         </Label>
                         <Input
@@ -1070,7 +1148,9 @@ export default function TokenManagementPage() {
           <TabsContent value="burn-coin" className="mt-8">
             <Card className="border-none bg-black/50 rounded-xl">
               <CardHeader className="text-center">
-                <CardTitle className="text-xl sm:text-2xl">Burn Meme Coin</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl">
+                  Burn Meme Coin
+                </CardTitle>
                 <CardDescription className="text-sm sm:text-base">
                   Reduce the total supply of your token by burning a specified
                   amount.
