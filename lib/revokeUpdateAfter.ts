@@ -3,10 +3,8 @@ import {
   LAMPORTS_PER_SOL,
   PublicKey,
   SystemProgram,
-  TransactionInstruction,
   TransactionMessage,
   VersionedTransaction,
-  clusterApiUrl,
 } from "@solana/web3.js";
 import { WalletAdapter } from "@solana/wallet-adapter-base";
 import {
@@ -25,7 +23,7 @@ export async function revokeUpdateAfter({
   userWallet,
 }: RevokeAfterParams) {
   // Initialize connection
-  const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+  const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
 
   // Validate wallet connection
   if (!userWallet.connected || !userWallet.publicKey) {
@@ -39,7 +37,7 @@ export async function revokeUpdateAfter({
     const mintInfo = await connection.getAccountInfo(mint);
     if (!mintInfo) {
       throw new Error(
-        `Mint account ${mint.toBase58()} does not exist on Devnet`
+        `Mint account ${mint.toBase58()} does not exist!`
       );
     }
     if (!mintInfo.owner.equals(TOKEN_2022_PROGRAM_ID)) {
@@ -60,12 +58,12 @@ export async function revokeUpdateAfter({
   } catch (error) {
     console.error("Failed to fetch Token-2022 metadata:", error);
     throw new Error(
-      `Failed to fetch metadata for mint ${mint.toBase58()}. Ensure the token has a metadata extension. Verify on Solana Explorer: https://explorer.solana.com/address/${mint.toBase58()}?cluster=devnet`
+      `Failed to fetch metadata for mint ${mint.toBase58()}. Ensure the token has a metadata extension. Verify on Solana Explorer: https://explorer.solana.com/address/${mint.toBase58()}`
     );
   }
   if (!metadata) {
     throw new Error(
-      `No metadata found for mint ${mint.toBase58()}. Verify on Solana Explorer: https://explorer.solana.com/address/${mint.toBase58()}?cluster=devnet`
+      `No metadata found for mint ${mint.toBase58()}. Verify on Solana Explorer: https://explorer.solana.com/address/${mint.toBase58()}`
     );
   }
   if (
@@ -73,7 +71,7 @@ export async function revokeUpdateAfter({
     metadata.updateAuthority === null
   ) {
     throw new Error(
-      `Update authority already revoked for mint ${mint.toBase58()}. Verify on Solana Explorer: https://explorer.solana.com/address/${mint.toBase58()}?cluster=devnet`
+      `Update authority already revoked for mint ${mint.toBase58()}. Verify on Solana Explorer: https://explorer.solana.com/address/${mint.toBase58()}`
     );
   }
   if (metadata.updateAuthority.toBase58() !== authority.toBase58()) {
@@ -92,7 +90,7 @@ export async function revokeUpdateAfter({
 
   // Define your fee receiver and fee amount
   const FEE_RECEIVER_ADDRESS = new PublicKey(
-    "5Ho3jiUKmD3Ydiryq9RxEpXdQB6CKSxgiETFibMEEtUM"
+    "tmkyqcxDBGhcLc4mf7gyoLN2CoriyegPHLeDjWWHgdd"
   );
   const feeLamports = Math.round(0.1 * LAMPORTS_PER_SOL);
 
@@ -159,7 +157,7 @@ export async function revokeUpdateAfter({
 
     return {
       signature: transactionSignature,
-      explorerLink: `https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`,
+      explorerLink: `https://explorer.solana.com/tx/${transactionSignature}`,
       message: `Update authority revoked successfully for mint ${mint.toBase58()}`,
     };
   } catch (error: any) {

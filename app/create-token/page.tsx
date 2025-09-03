@@ -53,7 +53,7 @@ export default function TokenManagementPage() {
   const { wallet, publicKey } = useWallet();
   const umi = useMemo(() => {
     if (!wallet || !wallet.adapter || !publicKey) return null;
-    return createUmi("https://api.devnet.solana.com")
+    return createUmi("https://api.mainnet-beta.solana.com")
       .use(walletAdapterIdentity(wallet.adapter))
       .use(mplTokenMetadata());
   }, [wallet, publicKey]);
@@ -71,7 +71,7 @@ export default function TokenManagementPage() {
   const [isLoading, setIsLoading] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const connection = useMemo(
-    () => new Connection("https://api.devnet.solana.com", "confirmed"),
+    () => new Connection("https://api.mainnet-beta.solana.com", "confirmed"),
     []
   );
 
@@ -297,7 +297,7 @@ export default function TokenManagementPage() {
               size="sm"
               onClick={() =>
                 window.open(
-                  `https://solscan.io/tx/${signature}?cluster=devnet`,
+                  `https://solscan.io/tx/${signature}?`,
                   "_blank"
                 )
               }
@@ -338,7 +338,7 @@ export default function TokenManagementPage() {
                 size="sm"
                 onClick={() =>
                   window.open(
-                    `https://solscan.io/token/${mintAddress.toBase58()}?cluster=devnet`,
+                    `https://solscan.io/token/${mintAddress.toBase58()}? `,
                     "_blank"
                   )
                 }
@@ -427,7 +427,7 @@ export default function TokenManagementPage() {
               size="sm"
               onClick={() =>
                 window.open(
-                  `https://solscan.io/tx/${signature}?cluster=devnet`,
+                  `https://solscan.io/tx/${signature}?`,
                   "_blank"
                 )
               }
@@ -504,7 +504,7 @@ export default function TokenManagementPage() {
               size="sm"
               onClick={() =>
                 window.open(
-                  `https://solscan.io/tx/${signature}?cluster=devnet`,
+                  `https://solscan.io/tx/${signature}?`,
                   "_blank"
                 )
               }
@@ -581,7 +581,7 @@ export default function TokenManagementPage() {
               size="sm"
               onClick={() =>
                 window.open(
-                  `https://solscan.io/tx/${signature}?cluster=devnet`,
+                  `https://solscan.io/tx/${signature}?`,
                   "_blank"
                 )
               }

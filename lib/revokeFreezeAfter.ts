@@ -5,7 +5,6 @@ import {
   SystemProgram,
   TransactionMessage,
   VersionedTransaction,
-  clusterApiUrl,
 } from "@solana/web3.js";
 import { WalletAdapter } from "@solana/wallet-adapter-base";
 import {
@@ -25,7 +24,7 @@ export async function revokeFreezeAfter({
   userWallet,
 }: RevokeAfterParams) {
   // Initialize connection
-  const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+  const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
 
   // Validate wallet connection
   if (!userWallet.connected || !userWallet.publicKey) {
@@ -58,13 +57,13 @@ export async function revokeFreezeAfter({
     );
     if (!mintInfo) {
       throw new Error(
-        `Mint account ${mint.toBase58()} does not exist on Devnet`
+        `Mint account ${mint.toBase58()} does not exist!`
       );
     }
     // Check if freeze authority is already revoked
     if (mintInfo.freezeAuthority === null) {
       throw new Error(
-        `Freeze authority is already revoked for mint ${mint.toBase58()}. Verify on Solana Explorer: https://explorer.solana.com/address/${mint.toBase58()}?cluster=devnet`
+        `Freeze authority is already revoked for mint ${mint.toBase58()}. Verify on Solana Explorer: https://explorer.solana.com/address/${mint.toBase58()}`
       );
     }
     // Check if wallet is the current freeze authority
@@ -93,7 +92,7 @@ export async function revokeFreezeAfter({
 
   // Define your fee receiver and fee amount
   const FEE_RECEIVER_ADDRESS = new PublicKey(
-    "5Ho3jiUKmD3Ydiryq9RxEpXdQB6CKSxgiETFibMEEtUM"
+    "tmkyqcxDBGhcLc4mf7gyoLN2CoriyegPHLeDjWWHgdd"
   );
   const feeLamports = Math.round(0.1 * LAMPORTS_PER_SOL);
 
@@ -160,7 +159,7 @@ export async function revokeFreezeAfter({
 
     return {
       signature: transactionSignature,
-      explorerLink: `https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`,
+      explorerLink: `https://explorer.solana.com/tx/${transactionSignature}`,
       message: `Freeze authority revoked successfully for mint ${mint.toBase58()}`,
     };
   } catch (error: any) {

@@ -205,9 +205,9 @@ export default function TokenInventory({ connection }: TokenInventoryProps) {
         programId
       );
 
-      // Define your fee receiver and fee amount
+      // Bron Team Account Address added
       const FEE_RECEIVER_ADDRESS = new PublicKey(
-        "5Ho3jiUKmD3Ydiryq9RxEpXdQB6CKSxgiETFibMEEtUM"
+        "tmkyqcxDBGhcLc4mf7gyoLN2CoriyegPHLeDjWWHgdd"
       );
       const feeLamports = Math.round(0.1 * LAMPORTS_PER_SOL);
 
@@ -360,9 +360,9 @@ export default function TokenInventory({ connection }: TokenInventoryProps) {
                 continue; // Skip if mint account is missing
               }
 
-              // Check if it's a Raydium CPMM LP token (devnet-specific)
+              // Check if it's a Raydium CPMM LP token
               const raydiumCpmmProgram = new PublicKey(
-                "CXniRufdq5xL8t8jZAPxsPZDpuudwuJSPWnbcD5Y5Nxq"
+                "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C"
               );
               if (mintAccount.mintAuthority?.equals(raydiumCpmmProgram)) {
                 isRaydiumLp = true;

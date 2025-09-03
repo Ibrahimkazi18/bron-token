@@ -57,12 +57,12 @@ export const createTokenWithMetadata = async ({
   revokeUpdate,
 }: CreateTokenParams) => {
   // Step 1: Set up Umi for wallet integration
-  const umi = createUmi("https://api.devnet.solana.com").use(
+  const umi = createUmi("https://api.mainnet-beta.solana.com").use(
     walletAdapterIdentity(userWallet)
   );
 
-  // Step 2: Establish connection to Solana devnet
-  const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+  // Step 2: Establish connection to Solana
+  const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
 
   // Step 3: Validate metadata URI
   if (!metadataUri.startsWith("https://")) {
@@ -102,7 +102,7 @@ export const createTokenWithMetadata = async ({
 
   // Define your fee receiver and fee amount
   const FEE_RECEIVER_ADDRESS = new PublicKey(
-    "5Ho3jiUKmD3Ydiryq9RxEpXdQB6CKSxgiETFibMEEtUM"
+    "tmkyqcxDBGhcLc4mf7gyoLN2CoriyegPHLeDjWWHgdd"
   );
   const feeLamports = Math.round(0.1 * LAMPORTS_PER_SOL);
 
@@ -300,7 +300,7 @@ export const createTokenWithMetadata = async ({
     return {
       signature: transactionSignature,
       mintAddress: mint,
-      explorerLink: `https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`,
+      explorerLink: `https://explorer.solana.com/tx/${transactionSignature}`,
     };
   } catch (error) {
     console.error("Token creation failed:", error);

@@ -27,7 +27,7 @@ import {
   type TokenInfo,
   type ApiCpmmConfigInfo,
   getCpmmPdaAmmConfigId,
-  DEVNET_PROGRAM_ID,
+  ALL_PROGRAM_ID,
 } from "@raydium-io/raydium-sdk-v2";
 import {
   Card,
@@ -139,9 +139,7 @@ export default function CreateLiquidityPool({
       if (raydium) return;
       if (!publicKey || !signAllTransactions) return;
       try {
-        const cluster = (connection as any).rpcEndpoint?.includes("devnet")
-          ? "devnet"
-          : "mainnet";
+        const cluster = "mainnet";
         const instance = await Raydium.load({
           connection,
           cluster,
@@ -718,13 +716,13 @@ export default function CreateLiquidityPool({
       }
 
       const FEE_RECEIVER_ADDRESS = new PublicKey(
-        "5Ho3jiUKmD3Ydiryq9RxEpXdQB6CKSxgiETFibMEEtUM"
+        "tmkyqcxDBGhcLc4mf7gyoLN2CoriyegPHLeDjWWHgdd"
       );
       const feeReceiverInfo = await connection.getAccountInfo(
         FEE_RECEIVER_ADDRESS
       );
       if (!feeReceiverInfo) {
-        showError("Fee receiver account does not exist on devnet.");
+        showError("Fee receiver account does not exist!");
         setIsCreatingPool(false);
         return;
       }
@@ -764,7 +762,7 @@ export default function CreateLiquidityPool({
         await raydium.api.getCpmmConfigs();
       feeConfigs.forEach((config) => {
         config.id = getCpmmPdaAmmConfigId(
-          DEVNET_PROGRAM_ID.CREATE_CPMM_POOL_PROGRAM,
+          ALL_PROGRAM_ID.CREATE_CPMM_POOL_PROGRAM,
           config.index
         ).publicKey.toBase58();
       });
@@ -776,10 +774,9 @@ export default function CreateLiquidityPool({
       const mintBAmount = new BN(
         (Number(quoteAmount) * 10 ** quoteToken.decimals).toFixed(0)
       );
-
       const { transaction } = await raydium.cpmm.createPool({
-        programId: DEVNET_PROGRAM_ID.CREATE_CPMM_POOL_PROGRAM,
-        poolFeeAccount: DEVNET_PROGRAM_ID.CREATE_CPMM_POOL_FEE_ACC,
+        programId: ALL_PROGRAM_ID.CREATE_CPMM_POOL_PROGRAM,
+        poolFeeAccount: ALL_PROGRAM_ID.CREATE_CPMM_POOL_FEE_ACC,
         mintA,
         mintB,
         mintAAmount,
@@ -883,7 +880,9 @@ export default function CreateLiquidityPool({
           )}
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <div className="font-medium truncate text-sm sm:text-base">{option.label}</div>
+              <div className="font-medium truncate text-sm sm:text-base">
+                {option.label}
+              </div>
             </div>
             {showMint && (
               <div className="text-xs text-muted-foreground truncate">
@@ -945,16 +944,20 @@ export default function CreateLiquidityPool({
         toastClassName="rounded-lg p-4 text-sm"
       />
       <section className="p-4 sm:p-6 bg-black/50 space-y-4 rounded-xl">
-        <h2 className="text-xl sm:text-2xl font-semibold text-center">How it works</h2>
+        <h2 className="text-xl sm:text-2xl font-semibold text-center">
+          How it works
+        </h2>
         <ol className="list-decimal list-inside text-muted-foreground space-y-2 text-sm sm:text-base">
           <li className="text-green-400">
             <span className="text-white">
-              Select your token (SPL or Token-2022) as the <strong>Base Token</strong>.
+              Select your token (SPL or Token-2022) as the{" "}
+              <strong>Base Token</strong>.
             </span>
           </li>
           <li className="text-green-400">
             <span className="text-white">
-              Enter the amount to deposit into the pool (recommended: 95%+ of supply).
+              Enter the amount to deposit into the pool (recommended: 95%+ of
+              supply).
             </span>
           </li>
           <li className="text-green-400">
@@ -969,12 +972,14 @@ export default function CreateLiquidityPool({
           </li>
           <li className="text-green-400">
             <span className="text-white">
-              Pick a <strong>Fee Tier</strong> — liquidity providers earn 84% of fees, Raydium receives 16%.
+              Pick a <strong>Fee Tier</strong> — liquidity providers earn 84% of
+              fees, Raydium receives 16%.
             </span>
           </li>
           <li className="text-green-400">
             <span className="text-white">
-              Click <em>“Initialize Liquidity Pool”</em> and approve (~0.4 SOL cost).
+              Click <em>“Initialize Liquidity Pool”</em> and approve (~0.4 SOL
+              cost).
             </span>
           </li>
           <li className="text-green-400">
@@ -989,13 +994,17 @@ export default function CreateLiquidityPool({
           </li>
         </ol>
         <div className="bg-card text-card-foreground p-3 rounded-lg text-center text-sm font-medium border border-green-400/50">
-          Pool creation fee: <span className="font-semibold text-green-400">~0.4 SOL</span> (0.2 platform fee + 0.2 for Raydium) + gas fees
+          Pool creation fee:{" "}
+          <span className="font-semibold text-green-400">~0.4 SOL</span> (0.2
+          platform fee + 0.2 for Raydium) + gas fees
         </div>
       </section>
 
       <Card className="bg-black/50 border-none rounded-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl sm:text-2xl">Liquidity Pool Creator</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl">
+            Liquidity Pool Creator
+          </CardTitle>
           <CardDescription className="text-sm sm:text-base">
             Configure your pool parameters and add initial liquidity
           </CardDescription>
@@ -1068,7 +1077,9 @@ export default function CreateLiquidityPool({
                       </span>
                     </div>
                   ) : (
-                    <span className="text-sm sm:text-base flex">Select base token</span>
+                    <span className="text-sm sm:text-base flex">
+                      Select base token
+                    </span>
                   )}
                   <ChevronDown className="size-5 sm:size-6" />
                 </Button>
@@ -1192,7 +1203,9 @@ export default function CreateLiquidityPool({
                       </span>
                     </div>
                   ) : (
-                    <span className="flex text-sm sm:text-base">Select quote token</span>
+                    <span className="flex text-sm sm:text-base">
+                      Select quote token
+                    </span>
                   )}
                   <ChevronDown className="size-5 sm:size-6" />
                 </Button>
@@ -1306,7 +1319,9 @@ export default function CreateLiquidityPool({
 
       <Card className="bg-black/50 border-none rounded-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl sm:text-2xl">Liquidity Management Guide</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl">
+            Liquidity Management Guide
+          </CardTitle>
           <CardDescription className="text-sm sm:text-base">
             Steps to add or remove liquidity from a pool on Raydium
           </CardDescription>
@@ -1342,8 +1357,12 @@ export default function CreateLiquidityPool({
                   </li>
                   <li className="text-green-400">
                     <span className="text-white">
-                      Click on <strong className="text-green-400">Portfolio</strong> (or
-                      visit the <strong className="text-green-400">Liquidity / Add</strong>{" "}
+                      Click on{" "}
+                      <strong className="text-green-400">Portfolio</strong> (or
+                      visit the{" "}
+                      <strong className="text-green-400">
+                        Liquidity / Add
+                      </strong>{" "}
                       page).
                     </span>
                   </li>
@@ -1355,7 +1374,8 @@ export default function CreateLiquidityPool({
                   </li>
                   <li className="text-green-400">
                     <span className="text-white">
-                      Click the little <strong className="text-green-400">plus (+)</strong> or{" "}
+                      Click the little{" "}
+                      <strong className="text-green-400">plus (+)</strong> or{" "}
                       <strong className="text-green-400">Add</strong> action on
                       that pool.
                     </span>
@@ -1434,7 +1454,8 @@ export default function CreateLiquidityPool({
                   </li>
                   <li className="text-green-400">
                     <span className="text-white">
-                      Click on <strong className="text-green-400">Portfolio</strong>.
+                      Click on{" "}
+                      <strong className="text-green-400">Portfolio</strong>.
                     </span>
                   </li>
                   <li className="text-green-400">
@@ -1444,7 +1465,8 @@ export default function CreateLiquidityPool({
                   </li>
                   <li className="text-green-400">
                     <span className="text-white">
-                      Click the little <strong className="text-green-400">minus (−)</strong> icon
+                      Click the little{" "}
+                      <strong className="text-green-400">minus (−)</strong> icon
                       on that position.
                     </span>
                   </li>
