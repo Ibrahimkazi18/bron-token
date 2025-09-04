@@ -53,7 +53,9 @@ export default function TokenManagementPage() {
   const { wallet, publicKey } = useWallet();
   const umi = useMemo(() => {
     if (!wallet || !wallet.adapter || !publicKey) return null;
-    return createUmi("https://api.mainnet-beta.solana.com")
+    return createUmi(
+      `${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`
+    )
       .use(walletAdapterIdentity(wallet.adapter))
       .use(mplTokenMetadata());
   }, [wallet, publicKey]);
@@ -70,10 +72,12 @@ export default function TokenManagementPage() {
   const [isRevokingUpdate, setIsRevokingUpdate] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const connection = useMemo(
-    () => new Connection("https://api.mainnet-beta.solana.com", "confirmed"),
-    []
-  );
+  // const apiKey = process.env.ALCHEMY_RPC_API;
+  // if (!apiKey) {
+  //   throw new Error("Connection not established to network");
+  // }
+  const rpcUrl = `${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`;
+  const connection = useMemo(() => new Connection(rpcUrl, "confirmed"), []);
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
@@ -243,18 +247,28 @@ export default function TokenManagementPage() {
       const rawSupply = Number(formData.totalSupply);
       const supply = BigInt(rawSupply * 10 ** decimals);
 
-      const { signature, mintAddress, explorerLink } =
-        await createTokenWithMetadata({
-          name: formData.name,
-          metadataUri: metadataUrl,
-          decimals,
-          supply,
-          revokeMint: formData.revokeMint,
-          revokeFreeze: formData.revokeFreeze,
-          revokeUpdate: formData.revokeUpdate,
-          userWallet: wallet.adapter,
-          symbol: formData.symbol,
-        });
+      const result = await createTokenWithMetadata({
+        name: formData.name,
+        metadataUri: metadataUrl,
+        decimals,
+        supply,
+        revokeMint: formData.revokeMint,
+        revokeFreeze: formData.revokeFreeze,
+        revokeUpdate: formData.revokeUpdate,
+        userWallet: wallet.adapter,
+        symbol: formData.symbol,
+      });
+      if (!result) {
+        toast.error(
+          "Transaction Simulation Failed! Please ensure your wallet has sufficient funds and try again",
+          {
+            className: "bg-red-500 text-white text-sm max-w-[90%] break-words",
+            progressClassName: "bg-red-300",
+          }
+        );
+        return null;
+      }
+      const { signature, mintAddress, explorerLink } = result;
 
       toast.info(
         ({ closeToast }) => (
@@ -296,10 +310,7 @@ export default function TokenManagementPage() {
               variant="outline"
               size="sm"
               onClick={() =>
-                window.open(
-                  `https://solscan.io/tx/${signature}?`,
-                  "_blank"
-                )
+                window.open(`https://solscan.io/tx/${signature}?`, "_blank")
               }
             >
               <ExternalLink className="w-4 h-4" />
@@ -414,10 +425,22 @@ export default function TokenManagementPage() {
 
     setIsRevokingMint(true);
     try {
-      const { signature, explorerLink } = await revokeMintAfter({
+      const result = await revokeMintAfter({
         mint: mintPublicKey,
         userWallet: wallet.adapter,
       });
+      if (!result) {
+        toast.error(
+          "Transaction Simulation Failed! Please check the wallet, mint address, an other parameters before revoking the authorities",
+          {
+            className:
+              "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+            progressClassName: "bg-red-300",
+          }
+        );
+        return;
+      }
+      const { signature, explorerLink } = result;
       toast.success(
         ({ closeToast }) => (
           <div className="space-y-2">
@@ -426,10 +449,7 @@ export default function TokenManagementPage() {
               variant="outline"
               size="sm"
               onClick={() =>
-                window.open(
-                  `https://solscan.io/tx/${signature}?`,
-                  "_blank"
-                )
+                window.open(`https://solscan.io/tx/${signature}?`, "_blank")
               }
             >
               View on Solscan
@@ -491,10 +511,22 @@ export default function TokenManagementPage() {
 
     setIsRevokingFreeze(true);
     try {
-      const { signature, explorerLink } = await revokeFreezeAfter({
+      const result = await revokeMintAfter({
         mint: mintPublicKey,
         userWallet: wallet.adapter,
       });
+      if (!result) {
+        toast.error(
+          "Transaction Simulation Failed! Please check the wallet, mint address, an other parameters before revoking the authorities",
+          {
+            className:
+              "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+            progressClassName: "bg-red-300",
+          }
+        );
+        return;
+      }
+      const { signature, explorerLink } = result;
       toast.success(
         ({ closeToast }) => (
           <div className="space-y-2">
@@ -503,10 +535,7 @@ export default function TokenManagementPage() {
               variant="outline"
               size="sm"
               onClick={() =>
-                window.open(
-                  `https://solscan.io/tx/${signature}?`,
-                  "_blank"
-                )
+                window.open(`https://solscan.io/tx/${signature}?`, "_blank")
               }
             >
               View on Solscan
@@ -568,10 +597,22 @@ export default function TokenManagementPage() {
 
     setIsRevokingUpdate(true);
     try {
-      const { signature, explorerLink } = await revokeUpdateAfter({
+      const result = await revokeMintAfter({
         mint: mintPublicKey,
         userWallet: wallet.adapter,
       });
+      if (!result) {
+        toast.error(
+          "Transaction Simulation Failed! Please check the wallet, mint address, an other parameters before revoking the authorities",
+          {
+            className:
+              "bg-red-500 text-white text-sm max-w-[90%] break-words overflow-hidden",
+            progressClassName: "bg-red-300",
+          }
+        );
+        return;
+      }
+      const { signature, explorerLink } = result;
       toast.success(
         ({ closeToast }) => (
           <div className="space-y-2">
@@ -580,10 +621,7 @@ export default function TokenManagementPage() {
               variant="outline"
               size="sm"
               onClick={() =>
-                window.open(
-                  `https://solscan.io/tx/${signature}?`,
-                  "_blank"
-                )
+                window.open(`https://solscan.io/tx/${signature}?`, "_blank")
               }
             >
               View on Solscan

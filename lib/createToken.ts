@@ -7,7 +7,6 @@ import {
   Transaction,
   TransactionMessage,
   VersionedTransaction,
-  clusterApiUrl,
 } from "@solana/web3.js";
 import {
   ExtensionType,
@@ -32,6 +31,8 @@ import {
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
 import { WalletAdapter } from "@solana/wallet-adapter-base";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type CreateTokenParams = {
   name: string;
@@ -57,12 +58,15 @@ export const createTokenWithMetadata = async ({
   revokeUpdate,
 }: CreateTokenParams) => {
   // Step 1: Set up Umi for wallet integration
-  const umi = createUmi("https://api.mainnet-beta.solana.com").use(
-    walletAdapterIdentity(userWallet)
-  );
+  const umi = createUmi(
+    `${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`
+  ).use(walletAdapterIdentity(userWallet));
 
   // Step 2: Establish connection to Solana
-  const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
+  const connection = new Connection(
+    `${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`,
+    "confirmed"
+  );
 
   // Step 3: Validate metadata URI
   if (!metadataUri.startsWith("https://")) {
@@ -261,9 +265,7 @@ export const createTokenWithMetadata = async ({
   if (simulation.value.err) {
     console.error("Simulation failed:", simulation.value.err);
     console.log("Simulation Logs:", simulation.value.logs);
-    throw new Error(
-      `Simulation failed: ${JSON.stringify(simulation.value.err)}`
-    );
+    return null;
   } else {
     console.log("Simulation Logs:", simulation.value.logs);
     console.log("Simulation successful, proceeding with transaction...");

@@ -24,7 +24,7 @@ export async function revokeFreezeAfter({
   userWallet,
 }: RevokeAfterParams) {
   // Initialize connection
-  const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
+  const connection = new Connection(`${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`, "confirmed");
 
   // Validate wallet connection
   if (!userWallet.connected || !userWallet.publicKey) {
@@ -125,11 +125,7 @@ export async function revokeFreezeAfter({
   if (simulation.value.err) {
     console.error("Simulation failed:", simulation.value.err);
     console.log("Simulation Logs:", simulation.value.logs);
-    throw new Error(
-      `Simulation failed: ${JSON.stringify(
-        simulation.value.err
-      )}. Check logs for details.`
-    );
+    return null;
   }
   console.log("Simulation Logs:", simulation.value.logs);
   console.log("Simulation successful, proceeding with revocation...");
