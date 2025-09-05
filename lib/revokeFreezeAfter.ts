@@ -24,7 +24,8 @@ export async function revokeFreezeAfter({
   userWallet,
 }: RevokeAfterParams) {
   // Initialize connection
-  const connection = new Connection(`${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`, "confirmed");
+  const rpcUrl = `${window.location.origin}/api/rpc`;
+  const connection = new Connection(rpcUrl, "confirmed");
 
   // Validate wallet connection
   if (!userWallet.connected || !userWallet.publicKey) {

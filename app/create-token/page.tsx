@@ -18,6 +18,7 @@ import {
   Flame,
   Copy,
   ExternalLink,
+  AlertTriangle,
 } from "lucide-react";
 import { Switch } from "@/components/ui/switch-option";
 import { Label } from "@/components/ui/label";
@@ -53,9 +54,8 @@ export default function TokenManagementPage() {
   const { wallet, publicKey } = useWallet();
   const umi = useMemo(() => {
     if (!wallet || !wallet.adapter || !publicKey) return null;
-    return createUmi(
-      `${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`
-    )
+    const rpcUrl = `${window.location.origin}/api/rpc`;
+    return createUmi(rpcUrl)
       .use(walletAdapterIdentity(wallet.adapter))
       .use(mplTokenMetadata());
   }, [wallet, publicKey]);
@@ -71,11 +71,7 @@ export default function TokenManagementPage() {
   const [isRevokingFreeze, setIsRevokingFreeze] = useState(false);
   const [isRevokingUpdate, setIsRevokingUpdate] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  // const apiKey = process.env.ALCHEMY_RPC_API;
-  // if (!apiKey) {
-  //   throw new Error("Connection not established to network");
-  // }
-  const rpcUrl = `${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`;
+  const rpcUrl = `${window.location.origin}/api/rpc`;
   const connection = useMemo(() => new Connection(rpcUrl, "confirmed"), []);
 
   const validate = () => {
@@ -677,12 +673,20 @@ export default function TokenManagementPage() {
           toastClassName="rounded-lg p-4 text-sm overflow-hidden"
         />
         <section className="text-center space-y-5 p-5">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
             Meme Token LaunchPad
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground">
+          <p className="text-sm sm:text-base p-3 text-white font-semibold flex items-center justify-center gap-2">
             Launch your own Token-2022 Meme Coins on Solana using our tools!
           </p>
+          <h2 className="text-sm sm:text-base glass-effect p-3 text-cyan-300 font-semibold flex items-center justify-center gap-2">
+            Remember to buy $BRON to support us!
+          </h2>
+          <h2 className="text-sm sm:text-base font-medium text-yellow-300 flex items-between justify-center gap-2 glass-effect border rounded-lg p-3">
+            <AlertTriangle size={25} className=" text-yellow-400" />
+            Beta Warning: This section is new and may contain bugs. Proceed at
+            your own risk!
+          </h2>
           <ConnectWalletSection />
         </section>
 

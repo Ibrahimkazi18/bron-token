@@ -58,15 +58,11 @@ export const createTokenWithMetadata = async ({
   revokeUpdate,
 }: CreateTokenParams) => {
   // Step 1: Set up Umi for wallet integration
-  const umi = createUmi(
-    `${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`
-  ).use(walletAdapterIdentity(userWallet));
+  const rpcUrl = `${window.location.origin}/api/rpc`;
+  const umi = createUmi(rpcUrl).use(walletAdapterIdentity(userWallet));
 
   // Step 2: Establish connection to Solana
-  const connection = new Connection(
-    `${process.env.NEXT_PUBLIC_ALCHEMY_RPC_API}`,
-    "confirmed"
-  );
+  const connection = new Connection(rpcUrl, "confirmed");
 
   // Step 3: Validate metadata URI
   if (!metadataUri.startsWith("https://")) {
