@@ -70,7 +70,6 @@ export default function TokenManagementPage() {
   const [isRevokingMint, setIsRevokingMint] = useState(false);
   const [isRevokingFreeze, setIsRevokingFreeze] = useState(false);
   const [isRevokingUpdate, setIsRevokingUpdate] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
   // const apiKey = process.env.ALCHEMY_RPC_API;
   // if (!apiKey) {
@@ -511,7 +510,7 @@ export default function TokenManagementPage() {
 
     setIsRevokingFreeze(true);
     try {
-      const result = await revokeMintAfter({
+      const result = await revokeFreezeAfter({
         mint: mintPublicKey,
         userWallet: wallet.adapter,
       });
@@ -597,7 +596,7 @@ export default function TokenManagementPage() {
 
     setIsRevokingUpdate(true);
     try {
-      const result = await revokeMintAfter({
+      const result = await revokeUpdateAfter({
         mint: mintPublicKey,
         userWallet: wallet.adapter,
       });
