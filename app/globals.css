@@ -61,6 +61,19 @@ body {
   }
 }
 
+.animate-glow2 {
+  animation: glow2 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow2 {
+  from {
+    box-shadow: 0 0 20px rgba(209, 209, 209, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+  }
+}
+
 .scroll-reveal {
   opacity: 0;
   transform: translateY(50px);

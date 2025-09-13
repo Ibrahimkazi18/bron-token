@@ -51,6 +51,9 @@ export default function Navbar() {
             <Link href="/airdrop" className="text-gray-300 hover:text-yellow-400 transition-colors">
               Airdrop
             </Link>
+            <Link href="/create-token" className="bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 text-white font-semibold hover:from-green-500 hover:via-blue-500 hover:to-purple-400 animate-glow2 p-2">
+              Token LaunchPad
+            </Link>
             <Button 
               onClick={() => router.push("/#wallet")}
               className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold hover:from-yellow-500 hover:to-yellow-600 animate-glow"
@@ -89,6 +92,9 @@ export default function Navbar() {
               <Link href="/airdrop" className="text-gray-300 hover:text-yellow-400 transition-colors">
                 Airdrop
               </Link>
+              <Link href="/create-token" className="bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 text-white font-semibold hover:from-green-500 hover:via-blue-500 hover:to-purple-500 p-2 text-center">
+              Token LaunchPad
+            </Link>
               <Button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold hover:from-yellow-500 hover:to-yellow-600">
                 Buy Now
               </Button>
