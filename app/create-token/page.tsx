@@ -54,7 +54,7 @@ export default function TokenManagementPage() {
   const { wallet, publicKey } = useWallet();
   const umi = useMemo(() => {
     if (!wallet || !wallet.adapter || !publicKey) return null;
-    const rpcUrl = `${window.location.origin}/api/rpc`;
+    const rpcUrl = `https://www.brontoken.com/api/rpc`;
     return createUmi(rpcUrl)
       .use(walletAdapterIdentity(wallet.adapter))
       .use(mplTokenMetadata());
@@ -71,7 +71,7 @@ export default function TokenManagementPage() {
   const [isRevokingFreeze, setIsRevokingFreeze] = useState(false);
   const [isRevokingUpdate, setIsRevokingUpdate] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const rpcUrl = `${window.location.origin}/api/rpc`;
+  const rpcUrl = `https://www.brontoken.com/api/rpc`;
   const connection = useMemo(() => new Connection(rpcUrl, "confirmed"), []);
 
   const validate = () => {
